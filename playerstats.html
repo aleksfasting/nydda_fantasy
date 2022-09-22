@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Pts round</th>
+            <th>GW Pts</th>
             <th>Pts</th>
             <th>Goals</th>
             <th>Assists</th>
@@ -28,7 +28,9 @@
     </tbody>
 </table>
 
-<script src="playerstats_js.js"></script>
+
+
+
 
 <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
  
@@ -46,6 +48,61 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 </script>
+
+<script src="points_functions.js"></script>
+
+<script>
+
+function showPlayerEl(doc) {
+    let rounds = doc.data().goalsInRound.length
+    let tbodyEl = document.querySelector('tbody')
+    let trEl = document.createElement('tr')
+
+    let tdEl = document.createElement('td')
+    tdEl.innerHTML = doc.data().name
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td')
+    tdEl.innerHTML = calcPointsRound(rounds-1,doc.data().goalsInRound,doc.data().assistsInRound,doc.data().MOTM,doc.data().CSInRound)
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td')
+    tdEl.innerHTML = calcPoints(rounds, doc.data().goalsInRound, doc.data().assistsInRound, doc.data().MOTM, doc.data().CSInRound)
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td')
+    tdEl.innerHTML = countFunc(doc.data().goalsInRound)
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td')
+    tdEl.innerHTML = countFunc(doc.data().assistsInRound)
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td')
+    tdEl.innerHTML = countFunc(doc.data().CSInRound)
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td')
+    tdEl.innerHTML = posFunc(doc.data().keeper)
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td')
+    tdEl.innerHTML = doc.data().team
+    trEl.appendChild(tdEl)
+
+    tbodyEl.appendChild(trEl)
+}
+
+let db = firebase.firestore();
+
+db.collection("players").get().then((snapshot) => {
+    let documents = snapshot.docs;
+    for (j = 0; j < documents.length;j++) {
+        showPlayerEl(documents[j])
+    }
+});
+    
+    </script>
 
 </body>
 </html>
