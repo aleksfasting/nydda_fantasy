@@ -4,12 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Player Stats</title>
 </head>
 <body>
 
+<h1>Player Stats</h1>
 
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Pts round</th>
+            <th>Pts</th>
+            <th>Goals</th>
+            <th>Assists</th>
+            <th>Clean Sheets</th>
+            <th>Pos</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
 
 <script src="playerstats_js.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+ 
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDO2nmJ-Rx4eZh-x8gUmjbAQqFwUfk59wE",
+  authDomain: "nydda-fantasy-dtbase.firebaseapp.com",
+  projectId: "nydda-fantasy-dtbase",
+  storageBucket: "nydda-fantasy-dtbase.appspot.com",
+  messagingSenderId: "516798929727",
+  appId: "1:516798929727:web:56e0af73e1f010e573918a",
+  measurementId: "G-SPWWSD3QPW"
+};
+firebase.initializeApp(firebaseConfig);
+</script>
+
 </body>
 </html>
