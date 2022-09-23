@@ -1,0 +1,168 @@
+html{
+    zoom: 90%;
+}
+body{
+    margin: 0;
+    padding: 0;
+    display: grid;
+ 
+    grid-template-columns: repeat(10,1fr);
+    grid-template-rows: repeat(1,1fr);
+    grid-template-areas: "h h h h h h h h h h "
+    "m m m m m m m m m m "
+    "m m m m m m m m m m " 
+    "m m m m m m m m m m "
+                         ;
+}
+
+header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    grid-area: h;
+    background-color: rgb(61, 25, 91);  
+    top: 0;
+    height: 90px;
+    
+}
+
+main{
+    grid-area: m;
+    background-color: white
+}
+#book{
+    margin-right: auto;
+    font-size: 25px;
+    font-style: normal;
+    top: 0;
+}
+
+.nav_links{
+    list-style: none;
+    padding: 0px 20px;
+    display: flex;
+    gap: 15px;
+
+}
+
+.nav_links li a{
+    transition: all 0.3s ease 0s;
+    text-align: center;
+    color:rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.nav_links li a:hover{
+    transition: all 0.3s ease 0s;
+    color:rgb(0, 0, 0);
+    background-color: rgb(212, 188, 155);
+    text-decoration-color: rgb(134, 91, 10);
+    padding: 5px 20px; 
+    border-radius: 8px;
+    text-decoration: underline;
+}
+
+#here{
+    background-color: rgb(194, 154, 108);
+}
+
+
+main h3{
+    font-size: 23px;
+    line-height: 16px;
+}
+
+main h2{
+    flex-basis: 100%;
+    text-align: center;
+    font-size: 35px;
+}
+
+
+a{
+    color: black;
+}
+
+a:hover{
+    color: rgb(194, 154, 108);
+    transition: 0.5s ease;
+}
+
+p{
+    font-style: italic;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+
+#boks{
+  height: 550px;
+  border: 1px solid black;
+  background-color: rgb(243, 231, 222 );
+  margin-top: 50px;
+}
+
+#underheader{
+  background-color: rgb(243, 231, 222 );
+  width: 95%;
+  height: 200px;
+  margin-left: 30px;
+
+}
+
+
+
+h1{
+  position: relative;
+  top: 4%;
+  margin-left: 30%;
+
+}
+
+
+#lenke1, #lenke2, #lenke3{
+    transition: all 0.3s ease 0s;
+    background-color: linear-gradient(rgba(4, 245, 255, 0.9), url(./bilderwebside/underheaderbildekopi.jpg));
+    text-align: center;
+    border-radius: 130px;
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid;
+    list-style: none;
+    position: absolute;
+    top: 22%;
+    height: 485px;
+    width: 360px;
+}
+/*fill="#37003C"*/
+#lenke1{
+left: 68%;
+}
+
+#lenke2{
+left: 37%;
+}
+
+#lenke3{
+left: 6%;
+}
+
+
+#lenke1:hover, #lenke2:hover, #lenke3:hover{
+    transition: all 0.3s ease 0s;
+    color:rgb(0, 0, 0);
+    background-color: rgb(194, 154, 108);
+    text-decoration-color: rgb(134, 91, 10);
+    padding: 5px 20px; 
+    border-radius: 8px;
+    text-decoration: underline;
+}
+
+.bakgrunn{
+    width: 100%;
+    background-repeat: repeat-x;
+    height: 100%;
+}
