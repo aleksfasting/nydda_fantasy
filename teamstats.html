@@ -23,6 +23,51 @@
     </tbody>
 </table>
 
-<script src="teamstats_js.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+ 
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDO2nmJ-Rx4eZh-x8gUmjbAQqFwUfk59wE",
+  authDomain: "nydda-fantasy-dtbase.firebaseapp.com",
+  projectId: "nydda-fantasy-dtbase",
+  storageBucket: "nydda-fantasy-dtbase.appspot.com",
+  messagingSenderId: "516798929727",
+  appId: "1:516798929727:web:56e0af73e1f010e573918a",
+  measurementId: "G-SPWWSD3QPW"
+};
+firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+
+
+
+function showTeamEl(doc) {
+    let tbodyEl = document.querySelector('tbody')
+    let trEl = document.createElement('tr')
+
+    let tdEl = document.createElement('td')
+    tdEl.innerHTML = doc.data().name
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td')
+    tdEl.innerHTML = doc.data().usrnm
+    trEl.appendChild(tdEl)
+
+    tbodyEl.appendChild(trEl)
+}
+
+let db = firebase.firestore();
+
+db.collection("teams").get().then((snapshot) => {
+    let documents = snapshot.docs;
+    for (j = 0; j < documents.length;j++) {
+        showTeamEl(documents[j])
+    }
+});
+</script>
+
 </body>
 </html>
