@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+ 
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+    
+    <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDO2nmJ-Rx4eZh-x8gUmjbAQqFwUfk59wE",
+      authDomain: "nydda-fantasy-dtbase.firebaseapp.com",
+      projectId: "nydda-fantasy-dtbase",
+      storageBucket: "nydda-fantasy-dtbase.appspot.com",
+      messagingSenderId: "516798929727",
+      appId: "1:516798929727:web:56e0af73e1f010e573918a",
+      measurementId: "G-SPWWSD3QPW"
+    };
+    firebase.initializeApp(firebaseConfig);
+    </script>
+<script>
+
+let db = firebase.firestore();
+
+function addPlayer() {
+    nameel = prompt('name')
+    teamel = prompt('team')
+    keeperel = Boolean(prompt('keeper'))
+    g1 = prompt('g1')
+    g2 = prompt('g2')
+    g3 = prompt('g3')
+    goals = [Number(g1),Number(g2),Number(g3)]
+    
+    a1 = prompt('a1')
+    a2 = prompt('a2')
+    a3 = prompt('a3')
+    ass = [Number(a1),Number(a2),Number(a3)]
+
+    g1 = prompt('cs1')
+    g2 = prompt('cs2')
+    g3 = prompt('cs3')
+    cs = [Boolean(g1),Boolean(g2),Boolean(g3)]
+
+    g1 = prompt('motm1')
+    g2 = prompt('motm2')
+    g3 = prompt('motm3')
+    motm = [Boolean(g1),Boolean(g2),Boolean(g3)]
+
+    db.collection('players').add({
+        name: nameel,
+        team: teamel,
+        keeper: keeperel,
+        goalsInRound: goals,
+        assistsInRound: ass,
+        CSInRound: cs,
+        MOTM: motm
+    })
+}
+addPlayer()
+</script>
+</body>
+</html>
