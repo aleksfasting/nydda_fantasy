@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Log In</title>
 </head>
 <body>
 <h1>Log In</h1>
@@ -13,7 +13,10 @@
 
 <input id="password" type="text" placeholder="Password">
 
-<button id="loginbutton" onclick="loginClick()">Log In</button>
+<button id="loginbutton" onclick="login()">Log In</button>
+
+<h3>Don't have a user?</h3>
+<button onclick='document.location.href="signup.html"'>Sign Up</button>
 
 <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
  

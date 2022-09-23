@@ -7,7 +7,7 @@ let db = firebase.firestore();
 
 
 
-function loginClick() {
+function login() {
     utry = usrnmEl.value
     ptry = psswrdEl.value
     db.collection("teams").get().then((snapshot) => {
