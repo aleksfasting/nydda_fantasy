@@ -31,7 +31,7 @@ function signup() {
                     usrnm: u,
                     psswrd: p,
                 })
-                document.location.replace('userpage.html')
+                document.location.replace('login.html')
             }
         })
     }
