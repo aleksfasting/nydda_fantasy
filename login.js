@@ -17,12 +17,13 @@ function login() {
             let data = documents[j].data()
             if (utry == data.usrnm && ptry == data.psswrd) {
                 loginSuccess = true
+                userlogin = documents[j].id
             }
         }
         if (loginSuccess) {
-            document.write('success')
+            document.location.replace('userpage.html?user='+userlogin)
         } else {
-            document.write('nono')
+            window.alert('wrong username or password')
         }
     });
 

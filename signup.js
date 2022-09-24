@@ -18,19 +18,20 @@ function signup() {
                 if (documents[j].data().usrnm == u) {
                     uexists = true
                 } else if (documents[j].data().psswrd == p) {
-                    pexists = ture
+                    pexists = true
                 }
             }
 
             if (uexists) {
-                console.log('u exists')
+                window.alert('username exists')
             } else if (pexists) {
-                console.log('p exists')
+                window.alert('password exists')
             } else {
                 db.collection('teams').add({
                     usrnm: u,
                     psswrd: p,
                 })
+                document.location.replace('userpage.html')
             }
         })
     }
