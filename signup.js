@@ -31,6 +31,7 @@ function signup() {
                     usrnm: u,
                     psswrd: p,
                 })
+                window.alert('Created User: ' + u)
                 document.location.replace('login.html')
             }
         })
