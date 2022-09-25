@@ -54,6 +54,7 @@ function showTeamStats(doc1, playerName) {
     buttonEl.innerHTML = 'Transfer'
     buttonEl.addEventListener('click', transferPlayer)
     buttonEl.param = playerName
+    buttonEl.setAttribute('class', 'transferOutButton')
     trEl.appendChild(buttonEl)
 
     tbodyEl.appendChild(trEl) // legge til rad
@@ -83,6 +84,11 @@ function showTeamStats(doc1, playerName) {
 }
 
 function transferPlayer(evt) {
+    y = document.getElementsByClassName('transferOutButton')
+    for (button of y) {
+        button.disabled = true
+    }
+
     bodyEl = document.querySelector('body')
     h1El = document.createElement('h3')
     playerName = evt.currentTarget.param
@@ -96,7 +102,7 @@ function transferPlayer(evt) {
     ulEl = document.createElement('ul')
     db.collection('players').get().then((snapshot) => {
         let documents2 = snapshot.docs;
-        for (l=0; l<Math.min(documents2.length,10); l++) {
+        for (l=0; l<Math.min(documents2.length,7); l++) {
             liEl = document.createElement('li')
             liEl.innerHTML = documents2[l].data().name
             liEl.setAttribute('class', 'playerItem')
@@ -104,7 +110,7 @@ function transferPlayer(evt) {
 
             transInEl = document.createElement('button')
             transInEl.innerHTML = 'Transfer In'
-            transInEl.addEventListener('click', transFunc)
+            transInEl.addEventListener('click', transInFunc)
             transInEl.playerIn = documents2[l].data().name
             transInEl.playerOut = playerName
             liEl.appendChild(transInEl)
@@ -114,21 +120,28 @@ function transferPlayer(evt) {
     })
 }
 
-function transFunc(evt) {
+function transInFunc(evt) {
+    y = document.getElementsByClassName('transferOutButton')
+    for (button of y) {
+        button.disabled = false
+    }
+
     playerIn = evt.currentTarget.playerIn
     playerOut = evt.currentTarget.playerOut
-    db.collection('teams').get().then((snapshot) => {
-        documents3 = snapshot.docs;
-        for (m=0;m<documents3.length;m++) {
-            if (documents3[m].id == userID) {
-                playerArr = documents3[m].data().players
-                documents3[m].data().name = 'hello'
-            }
-        }
-        index = playerArr.indexOf(playerOut)
-        playerArr[index] = playerIn
-        db.collection('teams').doc(userID).update({players: playerArr});
-    })
+
+    registerEl = document.createElement('button')
+    registerEl.innerHTML = 'Register Transfers'
+    registerEl.addEventListener('click', registerTrans)
+    bodyEl.appendChild(registerEl)
+
+
+    index = playersArr.indexOf(playerOut)
+    playersArr[index] = playerIn
+    db.collection('teams').doc(userID).update({players: playersArr});
+}
+
+function registerTrans() {
+    
 }
 
 function searchPlayer() {
@@ -147,9 +160,10 @@ function searchPlayer() {
 db = firebase.firestore();
 
 db.collection("teams").get().then((snapshot) => { // firebase for å hente spillere i lag
-    let documents1 = snapshot.docs;
+    let documents1 = snapshot.docs
     for (j = 0; j < documents1.length;j++) {
         if (documents1[j].id == userID) {
+            playersArr = documents1[j].data().players
             showTeamNames(documents1[j].data())
         }
     }
