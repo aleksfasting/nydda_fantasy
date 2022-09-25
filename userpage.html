@@ -10,6 +10,36 @@
 <h1>Userpage</h1>
 <h3 id="userID" ></h3>
 
+<h1>Performance</h1>
+
+<table>
+  <thead>
+    <tr>
+      <td>GW PTS</td>
+      <td>PTS</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="performance"></tr>
+  </tbody>
+</table>
+
+<h1>Team</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>GW PTS</th>
+      <th>PTS</th>
+      <th>Team</th>
+      <th>Pos</th>
+    </tr>
+  </thead>
+  <tbody id="team">
+
+  </tbody>
+</table>
 
 <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
  
@@ -27,6 +57,9 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 </script>
+
+<script src="points_functions.js"></script>
+
 <script src="userpage.js"></script>
 </body>
 </html>
