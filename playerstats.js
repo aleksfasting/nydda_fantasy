@@ -28,6 +28,10 @@ function showPlayerEl(doc) { // Funksjon for å vise spillerne i tabell
     tdEl.innerHTML = countFunc(doc.data().CSInRound)
     trEl.appendChild(tdEl)
 
+    tdEl = document.createElement('td') // antall Man of the Match
+    tdEl.innerHTML = countFunc(doc.data().MOTM)
+    trEl.appendChild(tdEl)
+
     tdEl = document.createElement('td') // posisjonen til spilleren
     tdEl.innerHTML = posFunc(doc.data().keeper)
     trEl.appendChild(tdEl)

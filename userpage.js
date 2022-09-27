@@ -1,3 +1,17 @@
+/*
+Her viser jeg hvilke elementer som har klasser og id:
+
+User-id overskriften har id 'userID'
+tbody til den store tabellen har id 'team'
+tbody til den lille tabellen har id 'performance'
+Transferknappene har class '.transferOutButton'
+Div-boksen som kommer opp når man trykker på transfer knappene har id '#transdiv'
+Knappene 'transfer in' har klasse '.transInButtons'
+Div-boksen med knappen 'register transfers' som kommer opp når man trykker på 'transfer' in knappene har id '#registerdiv'
+Knappen 'register transfers' har id '#registerButton'
+*/
+
+
 url = document.location.href // hente bruker-ID fra url
 expvar = url.split('?')[1]
 userID = expvar.split('=')[1]; // lagre brukeren-ID is userID
@@ -89,33 +103,40 @@ function transferPlayer(evt) {
         button.disabled = true
     }
 
-    bodyEl = document.querySelector('body')
-    h1El = document.createElement('h3')
-    playerName = evt.currentTarget.param
-    h1El.innerHTML = 'Transfer out: ' + playerName
-    bodyEl.appendChild(h1El)
+    transDivEl = document.querySelector('#transdiv') // henter divboksen for transfers med id-en transdiv
+    h3El = document.createElement('h3')
+    playerName = evt.currentTarget.param // henter parameter for navn
+    h3El.innerHTML = 'Transfer: ' + playerName
+    transDivEl.appendChild(h3El)
 
-    inputEl = document.createElement('input')
+    inputEl = document.createElement('input') // lager søkeboks
     inputEl.setAttribute('onkeyup', 'searchPlayer()')
-    bodyEl.appendChild(inputEl)
+    transDivEl.appendChild(inputEl)
 
-    ulEl = document.createElement('ul')
-    db.collection('players').get().then((snapshot) => {
+    ulEl = document.createElement('ul') // lager liste for spillere som skal byttes inn
+    db.collection('players').get().then((snapshot) => { // henter spillere
         let documents2 = snapshot.docs;
+        playerTeamDict = {}
+        playerPosDict = {}
         for (l=0; l<Math.min(documents2.length,7); l++) {
-            liEl = document.createElement('li')
+            playerTeamDict[documents2[l].data().name] = documents2[l].data().team // Objekt for hvilke lag som er hvilke spillere
+            playerPosDict[documents2[l].data().name] = posFunc(documents2[l].data().keeper) // Objekt for hvilken posisjon spillere er
+
+            liEl = document.createElement('li') // lager liste elementer
             liEl.innerHTML = documents2[l].data().name
-            liEl.setAttribute('class', 'playerItem')
+            liEl.setAttribute('class', 'playerItem') // listeelementene har klassen playerItem
             ulEl.appendChild(liEl)
 
-            transInEl = document.createElement('button')
+            transInEl = document.createElement('button') // lager knapper i listen
             transInEl.innerHTML = 'Transfer In'
             transInEl.addEventListener('click', transInFunc)
+            transInEl.setAttribute('class', 'transInButtons') // lagde klasse for transfer in knappene, '.transInButtons'
             transInEl.playerIn = documents2[l].data().name
             transInEl.playerOut = playerName
+            
             liEl.appendChild(transInEl)
 
-            bodyEl.appendChild(ulEl)
+            transDivEl.appendChild(ulEl) 
         }
     })
 }
@@ -125,23 +146,62 @@ function transInFunc(evt) {
     for (button of y) {
         button.disabled = false
     }
+    z = document.getElementsByClassName('transInButtons')
+    for (button of z) {
+        button.disabled = true
+    }
 
     playerIn = evt.currentTarget.playerIn
     playerOut = evt.currentTarget.playerOut
 
-    registerEl = document.createElement('button')
-    registerEl.innerHTML = 'Register Transfers'
-    registerEl.addEventListener('click', registerTrans)
-    bodyEl.appendChild(registerEl)
-
+    if (!Boolean(document.querySelector('#registerButton'))) {
+        registerEl = document.createElement('button')
+        registerEl.innerHTML = 'Register Transfers'
+        registerEl.setAttribute('id','registerButton')
+        registerEl.addEventListener('click', registerTrans)
+        registerDivEl.appendChild(registerEl)
+    }
 
     index = playersArr.indexOf(playerOut)
     playersArr[index] = playerIn
-    db.collection('teams').doc(userID).update({players: playersArr});
+    h3El.innerHTML += (' - ' + playerIn)
 }
 
 function registerTrans() {
-    
+    keeperCount = 0
+    sameTeam = false
+    alertCount = 0
+    for (player1 of playersArr) {
+        for (player2 of playersArr) {
+            if (player1 != player2) {
+                if (playerTeamDict[player1] == playerTeamDict[player2]) {
+                    sameTeam = true
+                    if (alertCount == 0) {
+                        alertCount += 1
+                        window.alert('You can only have 1 player from each team')
+                    }
+                }
+            }
+        }
+        if (playerPosDict[player1] == 'Keeper') {
+            keeperCount += 1
+        }
+        if (keeperCount != 1) {
+            keeperFault = true
+        } else {
+            keeperFault = false
+        }
+    }
+    if (keeperFault) {
+        window.alert('You must only have 1 keeper')
+    }
+    if (!keeperFault && !sameTeam) {
+        db.collection('teams').doc(userID).update({players: playersArr});
+    } else {
+        playersArr = playersArrSave
+    }
+    transDivEl.innerHTML = ''
+    registerDivEl.innerHTML = ''
 }
 
 function searchPlayer() {
@@ -159,12 +219,27 @@ function searchPlayer() {
 
 db = firebase.firestore();
 
-db.collection("teams").get().then((snapshot) => { // firebase for å hente spillere i lag
-    let documents1 = snapshot.docs
-    for (j = 0; j < documents1.length;j++) {
-        if (documents1[j].id == userID) {
-            playersArr = documents1[j].data().players
-            showTeamNames(documents1[j].data())
+
+db.collection('teams').onSnapshot((snapshot) => {
+    db.collection("teams").get().then((snapshot) => { // firebase for å hente spillere i lag
+        let documents1 = snapshot.docs
+
+        tbodyEl1 = document.querySelector('#team')
+        tbodyEl1.innerHTML = ''
+        transDivEl = document.querySelector('#transdiv')
+        transDivEl.innerHTML = ''
+        tbodyEl2 = document.querySelector('#performance')
+        tbodyEl2.innerHTML = ''
+        registerDivEl = document.querySelector('#registerdiv')
+        registerDivEl.innerHTML = ''
+
+
+        for (j = 0; j < documents1.length;j++) {
+            if (documents1[j].id == userID) {
+                playersArr = documents1[j].data().players
+                playersArrSave = playersArr
+                showTeamNames(documents1[j].data())
+            }
         }
-    }
-});
+    });
+})
