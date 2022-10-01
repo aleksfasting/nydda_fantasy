@@ -38,62 +38,97 @@ function collectTeamStats(doc,playerName) { // funksjon for å vise spillerstati
 }
 
 function showTeamStats(doc1, playerName) {
-    let rounds = doc1.goalsInRound.length // antall runder kamper spilt
-    tbodyEl = document.querySelector('#team') // henter tbody
-    trEl = document.createElement('tr') //lager rad
+    if (doc1.goalsInRound != undefined) {
+        let rounds = doc1.goalsInRound.length // antall runder kamper spilt
+        tbodyEl = document.querySelector('#team') // henter tbody
+        trEl = document.createElement('tr') //lager rad
 
-    tdEl = document.createElement('td') // spiller navn
-    tdEl.innerHTML = playerName
-    trEl.appendChild(tdEl)
+        tdEl = document.createElement('td') // spiller navn
+        tdEl.innerHTML = playerName
+        trEl.appendChild(tdEl)
 
-    tdEl = document.createElement('td') // spiller poeng i runden
-    gwtot = calcPointsRound(rounds-1, doc1.goalsInRound, doc1.assistsInRound, doc1.MOTM, doc1.CSInRound)
-    tdEl.innerHTML = gwtot
-    trEl.appendChild(tdEl)
-
-    tdEl = document.createElement('td') // poeng totalt
-    tot = calcPoints(rounds, doc1.goalsInRound, doc1.assistsInRound, doc1.MOTM, doc1.CSInRound)
-    tdEl.innerHTML = tot
-    trEl.appendChild(tdEl)
-
-    tdEl = document.createElement('td') // spiller lag
-    tdEl.innerHTML = doc1.team
-    trEl.appendChild(tdEl)
-
-    tdEl = document.createElement('td') //  posisjon
-    tdEl.innerHTML = posFunc(doc1.keeper)
-    trEl.appendChild(tdEl)
-
-    buttonEl = document.createElement('button') // transfer knapp
-    buttonEl.innerHTML = 'Transfer'
-    buttonEl.addEventListener('click', transferPlayer)
-    buttonEl.param = playerName
-    buttonEl.setAttribute('class', 'transferOutButton')
-    trEl.appendChild(buttonEl)
-
-    tbodyEl.appendChild(trEl) // legge til rad
-
-    if (document.querySelector('#performance').innerText.length < 1) { // lager perfomance tabellen med itrasjon
-        trEl = document.querySelector('#performance')
-
-        tdEl = document.createElement('td') // legger inn poeng denne runden fra data i første rad i tabellen under
+        tdEl = document.createElement('td') // spiller poeng i runden
+        gwtot = calcPointsRound(rounds-1, doc1.goalsInRound, doc1.assistsInRound, doc1.MOTM, doc1.CSInRound)
         tdEl.innerHTML = gwtot
         trEl.appendChild(tdEl)
 
-        tdEl = document.createElement('td') // legger inn totale poeng fra data i første rad i tabellen under
+        tdEl = document.createElement('td') // poeng totalt
+        tot = calcPoints(rounds, doc1.goalsInRound, doc1.assistsInRound, doc1.MOTM, doc1.CSInRound)
         tdEl.innerHTML = tot
         trEl.appendChild(tdEl)
-    } else {
-        numlist = document.querySelector('#performance').innerHTML.split('</td><td>') // henter data fra forrige iterasjon av tabellen
-        for (i=0; i<2;i++) {
-            numlist[i] = numlist[i].replace('<td>','')
-            numlist[i] = numlist[i].replace('</td>','')
-            numlist[i] = Number(numlist[i])
+
+        tdEl = document.createElement('td') // spiller lag
+        tdEl.innerHTML = doc1.team
+        trEl.appendChild(tdEl)
+
+        tdEl = document.createElement('td') //  posisjon
+        tdEl.innerHTML = posFunc(doc1.keeper)
+        trEl.appendChild(tdEl)
+
+        buttonEl = document.createElement('button') // transfer knapp
+        buttonEl.innerHTML = 'Transfer'
+        buttonEl.addEventListener('click', transferPlayer)
+        buttonEl.param = playerName
+        buttonEl.setAttribute('class', 'transferOutButton')
+        trEl.appendChild(buttonEl)
+
+        tbodyEl.appendChild(trEl) // legge til rad
+
+        if (document.querySelector('#performance').innerText.length < 1) { // lager perfomance tabellen med itrasjon
+            trEl = document.querySelector('#performance')
+
+            tdEl = document.createElement('td') // legger inn poeng denne runden fra data i første rad i tabellen under
+            tdEl.innerHTML = gwtot
+            trEl.appendChild(tdEl)
+
+            tdEl = document.createElement('td') // legger inn totale poeng fra data i første rad i tabellen under
+            tdEl.innerHTML = tot
+            trEl.appendChild(tdEl)
+        } else {
+            numlist = document.querySelector('#performance').innerHTML.split('</td><td>') // henter data fra forrige iterasjon av tabellen
+            for (i=0; i<2;i++) {
+                numlist[i] = numlist[i].replace('<td>','')
+                numlist[i] = numlist[i].replace('</td>','')
+                numlist[i] = Number(numlist[i])
+            }
+            numlist[0] += gwtot
+            numlist[1] += tot
+            trEl = document.querySelector('#performance')
+            trEl.innerHTML = '<td>' + numlist[0] + '</td><td>' + numlist[1] + '</td>' // legger til ny iterasjon i tabellen
         }
-        numlist[0] += gwtot
-        numlist[1] += tot
-        trEl = document.querySelector('#performance')
-        trEl.innerHTML = '<td>' + numlist[0] + '</td><td>' + numlist[1] + '</td>' // legger til ny iterasjon i tabellen
+    } else {
+        tbodyEl = document.querySelector('#team') // henter tbody
+        trEl = document.createElement('tr') //lager rad
+
+        tdEl = document.createElement('td')
+        tdEl.innerHTML = doc1.name
+        trEl.appendChild(tdEl)
+
+        tdEl = document.createElement('td')
+        tdEl.innerHTML = 0
+        trEl.appendChild(tdEl)
+
+        tdEl = document.createElement('td')
+        tdEl.innerHTML = 0
+        trEl.appendChild(tdEl)
+
+        tdEl = document.createElement('td')
+        tdEl.innerHTML = doc1.team
+        trEl.appendChild(tdEl)
+        
+        tdEl = document.createElement('td')
+        tdEl.innerHTML = posFunc(doc1.keeper)
+        trEl.appendChild(tdEl)
+
+        buttonEl = document.createElement('button') // transfer knapp
+        buttonEl.innerHTML = 'Transfer'
+        buttonEl.addEventListener('click', transferPlayer)
+        buttonEl.param = doc1.name
+        buttonEl.setAttribute('class', 'transferOutButton')
+        trEl.appendChild(buttonEl)
+
+
+        tbodyEl.appendChild(trEl)
     }
 }
 
@@ -118,14 +153,18 @@ function transferPlayer(evt) {
         let documents2 = snapshot.docs;
         playerTeamDict = {}
         playerPosDict = {}
-        for (l=0; l<Math.min(documents2.length,7); l++) {
-            playerTeamDict[documents2[l].data().name] = documents2[l].data().team // Objekt for hvilke lag som er hvilke spillere
-            playerPosDict[documents2[l].data().name] = posFunc(documents2[l].data().keeper) // Objekt for hvilken posisjon spillere er
+        for (m = 0; m < documents2.length; m++) {
+            playerTeamDict[documents2[m].data().name] = documents2[m].data().team // Objekt for hvilke lag som er hvilke spillere
+            playerPosDict[documents2[m].data().name] = posFunc(documents2[m].data().keeper) // Objekt for hvilken posisjon spillere er
+        }
+        a = []
+        b = []
+        for (l=0; l < documents2.length; l++) {
 
             liEl = document.createElement('li') // lager liste elementer
             liEl.innerHTML = documents2[l].data().name
             liEl.setAttribute('class', 'playerItem') // listeelementene har klassen playerItem
-            ulEl.appendChild(liEl)
+            a.push(liEl)
 
             transInEl = document.createElement('button') // lager knapper i listen
             transInEl.innerHTML = 'Transfer In'
@@ -133,10 +172,12 @@ function transferPlayer(evt) {
             transInEl.setAttribute('class', 'transInButtons') // lagde klasse for transfer in knappene, '.transInButtons'
             transInEl.playerIn = documents2[l].data().name
             transInEl.playerOut = playerName
-            
-            liEl.appendChild(transInEl)
-
-            transDivEl.appendChild(ulEl) 
+            b.push(transInEl)
+        }
+        for  (n = 0; n < Math.min(documents2.length,7); n++) {
+            a[n].appendChild(b[n])
+            ulEl.appendChild(a[n])
+            transDivEl.appendChild(ulEl)
         }
     })
 }
@@ -208,11 +249,13 @@ function searchPlayer() {
     let input = document.querySelector('input').value
     input = input.toLowerCase()
     let x = document.getElementsByClassName('playerItem');
-    for (i = 0; i < x.length; i++) { 
-        if (!x[i].innerHTML.toLowerCase().includes(input)) {
-            x[i].style.display="none";
+    for (i = 0; i < a.length; i++) { 
+        if (!a[i].innerHTML.toLowerCase().includes(input)) {
+            a[i].style.display="none";
         } else {
-            x[i].style.display="list-item"; 
+            a[i].appendChild(b[i])
+            ulEl.appendChild(a[i])
+            a[i].style.display="list-item";
         }
     }
 }
