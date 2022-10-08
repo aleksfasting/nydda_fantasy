@@ -1,0 +1,572 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 610px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(19, 1fr);
+    grid-template-areas: "h h h h h h h "
+               "uh uh uh uh uh uh uh"
+               "s s s s s s s"
+               "s s s s s s s"
+                "s s s s s s s"
+                "s s s s s s s"
+                "s s s s s s s"
+                "s s s s s s s"
+                "s s s s s s s"
+                "l l l l l l l" 
+                "l l l l l l l" 
+                "l l l l l l l" 
+                "f f f f f f f"
+                "f f f f f f f" 
+                "f f f f f f f";
+
+}
+
+header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    grid-area: h;
+    background-color: rgb(61, 25, 91);  
+    height: 90px;
+    border: 3px solid black;
+    
+}
+
+ li a{
+    transition: all 0.3s ease 0s;
+    text-align: center;
+    color:rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 10px;
+    padding: 10px;
+    font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, sans-serif;}
+
+li{
+    display: inline-block;
+    list-style: none;
+}
+
+li a:hover:not(#nrfr){
+    transition: all 0.3s ease 0s;
+    color:rgb(0, 0, 0);
+    background-color: #09fd8b;
+    text-decoration-color: rgb(134, 91, 10);
+    padding: 5px 20px; 
+    border-radius: 8px;
+    text-decoration: underline;
+}
+
+#underheader{
+    grid-area: uh;
+    border-radius: 1px solid black;
+    background-color:#09fd8b;
+    width: 720px;
+    height: 70px;
+    margin-left: 20px;
+    margin-top: 20px;
+
+}
+
+
+
+#Statistikk{
+    grid-area: s;
+    width: 900px;
+    height: 485px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+/*
+#Login{
+    grid-area: l;
+    border-radius: 1px solid black;
+    background-color: rgb(38, 11, 88);
+    width: 340px;
+    margin-top: 20px;
+    margin-right: 5px;
+
+}
+
+
+#Login > a{
+    transition: all 0.3s ease 0s;
+    background-color: linear-gradient(rgba(4, 245, 255, 0.9), url(./bilderwebside/underheaderbildekopi.jpg));
+    text-align: center;
+    border-radius: 10px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    width: 180px;
+    height: 150px;
+   margin: 25px 55px;
+
+}
+
+#Login > a:hover{
+    transition: all 0.3s ease 0s;
+    color:rgb(0, 0, 0);
+    background-color: #ffffff;
+    text-decoration-color: rgb(134, 91, 10);
+    padding: 5px 20px; 
+    border-radius: 8px;
+    text-decoration: underline;
+}
+*/
+
+h2{
+    margin-left: 20px;
+}
+
+#Statistikk > a{
+    transition: all 0.3s ease 0s;
+    background-color: linear-gradient(rgba(4, 245, 255, 0.9), url(./bilderwebside/underheaderbildekopi.jpg));
+    text-align: center;
+    border-radius: 60px;
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    height: 155px;
+    width: 640px;
+    background-color: white;
+    opacity: 0.7;
+}
+
+#Statistikk > a:hover{
+    transition: all 0.3s ease 0s;
+    color:rgb(0, 0, 0);
+    background-color: #09fd8b;
+    text-decoration-color: rgb(134, 91, 10);
+    padding: 5px 25px; 
+    border-radius: 8px;
+    height: 465px;
+    width: 350px;
+    text-decoration: underline;
+}
+
+#Dynamisk{
+    width: 780px;
+    height: 600px;
+}
+
+.logo{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 1%;
+  
+}
+.ps{
+    position: absolute;
+    left: 20%;
+    top: 40%;
+}
+
+.ts{
+    position: absolute;
+    left: 20%;
+    top: 85%;
+
+}
+#Jakob{
+    display: none;
+}
+ p{
+    font-size: 23px;
+    color: black;
+}
+
+
+@media only screen and (min-width: 600px){
+    body{
+        margin: 0;
+        padding: 0;
+        height: 810px;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(10, 1fr);
+        grid-template-areas: "h h h h h h h "
+                   "uh uh uh uh uh uh l"
+                   "s s s s s s l"
+                   "s s s s s s l"
+                    "s s s s s s f"
+                    "s s s s s s f"
+                    "s s s s s s f"
+                    "s s s s s s f"
+                    "s s s s s s f" ;
+    
+    }
+    header{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            grid-area: h;
+            background-color: rgb(61, 25, 91);  
+            top: 0;
+
+    }
+    
+     li a{
+        transition: all 0.3s ease 0s;
+        text-align: center;
+        color:rgb(255, 255, 255);
+        text-decoration: none;
+        font-size: 17px;
+        padding: 18px;
+        font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, sans-serif;}
+    
+    li{
+        display: inline-block;
+        list-style: none;
+    }
+    
+    li a:hover:not(#nrfr){
+        transition: all 0.3s ease 0s;
+        color:rgb(0, 0, 0);
+        background-color: #09fd8b;
+        text-decoration-color: rgb(134, 91, 10);
+        padding: 5px 20px; 
+        border-radius: 8px;
+        text-decoration: underline;
+    }
+    
+    #underheader{
+        grid-area: uh;
+        border-radius: 1px solid black;
+        background-color:#09fd8b;
+        width: 980px;
+        height: 70px;
+        margin-left: 20px;
+        margin-top: 20px;
+    
+    }
+    
+    .nydalen{
+        position: absolute;
+        left: 8%;
+    }
+    #Dynamisk{
+        width: 980px;
+        height: 600px;
+    }
+    #Statistikk{
+        grid-area: s;
+        width: 900px;
+        height: 485px;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    
+    #Login{
+        grid-area: l;
+        border-radius: 1px solid black;
+        background-color: rgb(38, 11, 88);
+        width: 340px;
+        margin-top: 20px;
+        margin-right: 5px;
+        
+    
+    }
+    
+    #Login > a{
+        transition: all 0.3s ease 0s;
+        background-color: linear-gradient(rgba(4, 245, 255, 0.9), url(./bilderwebside/underheaderbildekopi.jpg));
+        text-align: center;
+        border-radius: 10px;
+        font-size: 20px;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border: 1px solid;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        width: 180px;
+        height: 150px;
+       margin: 25px 55px;
+    
+    }
+    
+    #Login > a:hover{
+        transition: all 0.3s ease 0s;
+        color:rgb(0, 0, 0);
+        background-color: #ffffff;
+        text-decoration-color: rgb(134, 91, 10);
+        padding: 5px 20px; 
+        border-radius: 8px;
+        text-decoration: underline;
+    }
+    
+    
+    h2{
+        margin-left: 20px;
+    }
+    #Statistikk > a{
+        transition: all 0.3s ease 0s;
+        background-color: linear-gradient(rgba(4, 245, 255, 0.9), url(./bilderwebside/underheaderbildekopi.jpg));
+        text-align: center;
+        border-radius: 60px;
+        color:rgb(0, 0, 0);
+        text-decoration: none;
+        padding: 10px 20px;
+        border: 1px solid;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        height: 455px;
+        width: 340px;
+        background-color: white;
+        opacity: 0.7;
+    }
+    
+    #Statistikk > a:hover{
+        transition: all 0.3s ease 0s;
+        color:rgb(0, 0, 0);
+        background-color: #09fd8b;
+        text-decoration-color: rgb(134, 91, 10);
+        padding: 5px 25px; 
+        border-radius: 8px;
+        height: 465px;
+        width: 350px;
+        text-decoration: underline;
+    }
+    
+    .logo{
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 1%;
+      
+    }
+    .ps{
+        position: absolute;
+        left: 5%;
+        top: 35%;
+    }
+    
+    .ts{
+        position: absolute;
+        left: 40%;
+        top: 35%;
+    
+    }
+    #Jakob{
+        grid-area: f;
+        border-radius: 1px solid black;
+        margin-top: 10px;
+        width: 340px;
+        height: 465px;
+        display: block;
+    }
+    
+     p{
+        font-size: 23px;
+        color: black;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    body{
+        margin: 0;
+        padding: 0;
+        height: 810px;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(10, 1fr);
+        grid-template-areas: "h h h h h h h "
+                   "uh uh uh uh uh uh l"
+                   "s s s s s s l"
+                   "s s s s s s l"
+                    "s s s s s s f"
+                    "s s s s s s f"
+                    "s s s s s s f"
+                    "s s s s s s f"
+                    "s s s s s s f" ;
+    
+    }
+    header{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            grid-area: h;
+            background-color: rgb(61, 25, 91);  
+            top: 0;
+
+    }
+    
+     li a{
+        transition: all 0.3s ease 0s;
+        text-align: center;
+        color:rgb(255, 255, 255);
+        text-decoration: none;
+        font-size: 17px;
+        padding: 18px;
+        font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, sans-serif;}
+    
+    li{
+        display: inline-block;
+        list-style: none;
+    }
+    
+    li a:hover:not(#nrfr){
+        transition: all 0.3s ease 0s;
+        color:rgb(0, 0, 0);
+        background-color: #09fd8b;
+        text-decoration-color: rgb(134, 91, 10);
+        padding: 5px 20px; 
+        border-radius: 8px;
+        text-decoration: underline;
+    }
+    
+    #underheader{
+        grid-area: uh;
+        border-radius: 1px solid black;
+        background-color:#09fd8b;
+        width: 980px;
+        height: 70px;
+        margin-left: 20px;
+        margin-top: 20px;
+    
+    }
+    
+    .nydalen{
+        position: absolute;
+        left: 8%;
+    }
+    #Dynamisk{
+        width: 980px;
+        height: 600px;
+    }
+    #Statistikk{
+        grid-area: s;
+        width: 900px;
+        height: 485px;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    
+    #Login{
+        grid-area: l;
+        border-radius: 1px solid black;
+        background-color: rgb(38, 11, 88);
+        width: 340px;
+        margin-top: 20px;
+        margin-right: 5px;
+        
+    
+    }
+    
+    #Login > a{
+        transition: all 0.3s ease 0s;
+        background-color: linear-gradient(rgba(4, 245, 255, 0.9), url(./bilderwebside/underheaderbildekopi.jpg));
+        text-align: center;
+        border-radius: 10px;
+        font-size: 20px;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border: 1px solid;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        width: 180px;
+        height: 150px;
+       margin: 25px 55px;
+    
+    }
+    
+    #Login > a:hover{
+        transition: all 0.3s ease 0s;
+        color:rgb(0, 0, 0);
+        background-color: #ffffff;
+        text-decoration-color: rgb(134, 91, 10);
+        padding: 5px 20px; 
+        border-radius: 8px;
+        text-decoration: underline;
+    }
+    
+    
+    h2{
+        margin-left: 20px;
+    }
+    #Statistikk > a{
+        transition: all 0.3s ease 0s;
+        background-color: linear-gradient(rgba(4, 245, 255, 0.9), url(./bilderwebside/underheaderbildekopi.jpg));
+        text-align: center;
+        border-radius: 60px;
+        color:rgb(0, 0, 0);
+        text-decoration: none;
+        padding: 10px 20px;
+        border: 1px solid;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        height: 455px;
+        width: 340px;
+        background-color: white;
+        opacity: 0.7;
+    }
+    
+    #Statistikk > a:hover{
+        transition: all 0.3s ease 0s;
+        color:rgb(0, 0, 0);
+        background-color: #09fd8b;
+        text-decoration-color: rgb(134, 91, 10);
+        padding: 5px 25px; 
+        border-radius: 8px;
+        height: 465px;
+        width: 350px;
+        text-decoration: underline;
+    }
+    
+    .logo{
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 1%;
+      
+    }
+    .ps{
+        position: absolute;
+        left: 5%;
+        top: 35%;
+    }
+    
+    .ts{
+        position: absolute;
+        left: 40%;
+        top: 35%;
+    
+    }
+    #Jakob{
+        grid-area: f;
+        border-radius: 1px solid black;
+        margin-top: 10px;
+        width: 340px;
+        height: 465px;
+        display: block;
+    }
+    
+     p{
+        font-size: 23px;
+        color: black;
+    }
+}
+
+}

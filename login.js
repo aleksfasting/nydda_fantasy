@@ -3,9 +3,16 @@ psswrdEl = document.querySelector('#password')
 
 buttonEl = document.querySelector('#loginbutton')
 
+
 let db = firebase.firestore();
 
+let glemtEl = document.querySelector("#glemt");
 
+glemtEl.addEventListener("click", alertFunksjon);
+
+function alertFunksjon(){
+    alert("Snakk med Shiza eller Aleks for glemt brukernavn eller passord");
+}
 
 function login() {
     utry = usrnmEl.value
@@ -28,3 +35,19 @@ function login() {
     });
 
 }
+
+function myFunction() {
+    let x = document.getElementById("password");
+    let y = document.getElementById("hide1");
+    let z = document.getElementById("hide2");
+    if (x.type === "password") {
+      x.type = "text";
+      y.style.display = "none";
+      z.style.display = "block";
+    } else {
+      x.type = "password";
+      y.style.display = "block";
+      z.style.display = "none";
+    }
+  }
+  

@@ -4,17 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign up</title>
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
 </head>
 <body>
-<h1>Sign Up</h1>
+  <div id = "boks">
 
-<input id="username" type="text" placeholder="Username">
+  <div id = "login">
+      <h1>Sign Up</h1>
+    <div id = "inputs">
+        <div class="Brukernavn">
+            <label >
+                <div> Brukernavn </div>
+            </label>
+            <div class="input">
+              <input id="username" type="text" placeholder="Username" required>
+            </div>
+        </div>
 
-<input id="password1" type="text" placeholder="Password">
-<input id="password2" type="text" placeholder="Password">
+        <div class="passord">
+            <label>
+                <div> Passord</div>
+            </label>
+              <input id="password" type="password" placeholder="Password" required>
+            <span id = "eye" onclick="myFunction()">
+              <i id = "hide1" class="bi bi-eye-slash-fill"></i>
+              <i id = "hide2" class="bi bi-eye-fill"></i>
+          </span>
+            <input id="password2" type="password" placeholder="Password">
+       
+            <span id = "eye2" onclick="myFunction2()">
+              <i id = "hide3" class="bi bi-eye-slash-fill"></i>
+              <i id = "hide4" class="bi bi-eye-fill"></i>
+          </span>
 
-<button id="loginbutton" onclick="signup()">Sign Up</button>
+        </div>
+        <button id="loginbutton" onclick="signup()">Sign Up</button>
+      
+    </div>
+
+  
+                      
+</div>
+</div>
+</div>
 
 <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
  

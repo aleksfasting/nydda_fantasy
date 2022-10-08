@@ -37,3 +37,35 @@ function signup() {
         })
     }
 }
+
+function myFunction() {
+    let x = document.getElementById("password");
+    let y = document.getElementById("hide1");
+    let z = document.getElementById("hide2");
+    if (x.type === "password") {
+      x.type = "text";
+      y.style.display = "none";
+      z.style.display = "block";
+    } else {
+      x.type = "password";
+      y.style.display = "block";
+      z.style.display = "none";
+    }
+  }
+  
+  
+function myFunction2() {
+    let a = document.getElementById("password2");
+    let b = document.getElementById("hide3");
+    let c = document.getElementById("hide4");
+    if (a.type === "password2") {
+      a.type = "text";
+      b.style.display = "none";
+      c.style.display = "block";
+    } else {
+      a.type = "password2";
+      b.style.display = "block";
+      c.style.display = "none";
+    }
+  }
+  
