@@ -11,7 +11,6 @@ Div-boksen med knappen 'register transfers' som kommer opp når man trykker på 
 Knappen 'register transfers' har id '#registerButton'
 */
 
-
 url = document.location.href // hente bruker-ID fra url
 expvar = url.split('?')[1]
 userID = expvar.split('=')[1]; // lagre brukeren-ID is userID
@@ -22,22 +21,22 @@ document.querySelector('#userID').innerHTML = 'user-ID: ' + userID // vise bruke
 
 function showTeamNames(doc) { // funksjon for å vise spillernavn
     for (i=0; i<doc.players.length;i++) { // hente alle spillerene i spiller-arrayen
-        collectTeamStats(doc,doc.players[i]) // legge til spillerstatistikk
+        collectTeamStats(doc,doc.players[i],doc.transfersLeft) // legge til spillerstatistikk
     }
 }
 
-function collectTeamStats(doc,playerName) { // funksjon for å vise spillerstatisikk
+function collectTeamStats(doc,playerName,transfersLeft) { // funksjon for å vise spillerstatisikk
     db.collection('players').get().then((snapshot) => { // firebase for å hente stats til spillere i lag 
         let documents2 = snapshot.docs;
         for (k=0;k<documents2.length;k++) {
             if (playerName == documents2[k].data().name) {
-                showTeamStats(documents2[k].data(),playerName)
+                showTeamStats(documents2[k].data(),playerName,transfersLeft)
             }
         }
     })
 }
 
-function showTeamStats(doc1, playerName) {
+function showTeamStats(doc1, playerName,transfersLeft) {
     if (doc1.goalsInRound != undefined) {
         let rounds = doc1.goalsInRound.length // antall runder kamper spilt
         tbodyEl = document.querySelector('#team') // henter tbody
@@ -69,6 +68,7 @@ function showTeamStats(doc1, playerName) {
         buttonEl.innerHTML = 'Transfer'
         buttonEl.addEventListener('click', transferPlayer)
         buttonEl.param = playerName
+        buttonEl.transfersLeft = transfersLeft
         buttonEl.setAttribute('class', 'transferOutButton')
         trEl.appendChild(buttonEl)
 
@@ -124,9 +124,9 @@ function showTeamStats(doc1, playerName) {
         buttonEl.innerHTML = 'Transfer'
         buttonEl.addEventListener('click', transferPlayer)
         buttonEl.param = doc1.name
+        buttonEl.transfersLeft = transfersLeft
         buttonEl.setAttribute('class', 'transferOutButton')
         trEl.appendChild(buttonEl)
-
 
         tbodyEl.appendChild(trEl)
     }
@@ -141,12 +141,17 @@ function transferPlayer(evt) {
     transDivEl = document.querySelector('#transdiv') // henter divboksen for transfers med id-en transdiv
     h3El = document.createElement('h3')
     playerName = evt.currentTarget.param // henter parameter for navn
+    transfersLeft = evt.currentTarget.transfersLeft
+
     h3El.innerHTML = 'Transfer: ' + playerName
     transDivEl.appendChild(h3El)
 
     inputEl = document.createElement('input') // lager søkeboks
     inputEl.setAttribute('onkeyup', 'searchPlayer()')
-    transDivEl.appendChild(inputEl)
+    inputEl.setAttribute('class', 'input')
+    if (!Boolean(document.querySelector('.input'))) {
+        registerDivEl.appendChild(inputEl)
+    }
 
     ulEl = document.createElement('ul') // lager liste for spillere som skal byttes inn
     db.collection('players').get().then((snapshot) => { // henter spillere
@@ -172,6 +177,7 @@ function transferPlayer(evt) {
             transInEl.setAttribute('class', 'transInButtons') // lagde klasse for transfer in knappene, '.transInButtons'
             transInEl.playerIn = documents2[l].data().name
             transInEl.playerOut = playerName
+            transInEl.transfersLeft = transfersLeft
             b.push(transInEl)
         }
         for  (n = 0; n < Math.min(documents2.length,7); n++) {
@@ -194,6 +200,7 @@ function transInFunc(evt) {
 
     playerIn = evt.currentTarget.playerIn
     playerOut = evt.currentTarget.playerOut
+    transfersLeft = evt.currentTarget.transfersLeft
 
     if (!Boolean(document.querySelector('#registerButton'))) {
         registerEl = document.createElement('button')
@@ -208,19 +215,20 @@ function transInFunc(evt) {
     h3El.innerHTML += (' - ' + playerIn)
 }
 
-function registerTrans() {
+function registerTrans(evt) {
     keeperCount = 0
     sameTeam = false
     alertCount = 0
-    for (player1 of playersArr) {
-        for (player2 of playersArr) {
-            if (player1 != player2) {
-                if (playerTeamDict[player1] == playerTeamDict[player2]) {
-                    sameTeam = true
-                    if (alertCount == 0) {
-                        alertCount += 1
-                        window.alert('You can only have 1 player from each team')
-                    }
+    for (i = 0; i < playersArr.length; i++) {
+        for (j = 0; j < playersArr.length; j++) {
+            player1 = playersArr[i]
+            player2 = playersArr[j]
+            if (i != j) 
+            if (playerTeamDict[player1] == playerTeamDict[player2]) {
+                sameTeam = true
+                if (alertCount == 0) {
+                    alertCount += 1
+                    window.alert('You can only have 1 player from each team')
                 }
             }
         }
@@ -236,8 +244,19 @@ function registerTrans() {
     if (keeperFault) {
         window.alert('You must only have 1 keeper')
     }
-    if (!keeperFault && !sameTeam) {
-        db.collection('teams').doc(userID).update({players: playersArr});
+    
+    newtransfersLeft = transfersLeft
+    for (o = 0; o < 5; o++) {
+        if (playersArr[o] != playersArrSave[o]) {
+            newtransfersLeft = newtransfersLeft - 1
+        }
+    
+    }
+    if (newtransfersLeft < 0) {
+        window.alert('You have no transfers left')
+    }
+    if (!keeperFault && !sameTeam && (newtransfersLeft >= 0)) {
+        db.collection('teams').doc(userID).update({players: playersArr, transfersLeft: newtransfersLeft});
     } else {
         playersArr = playersArrSave
     }
@@ -262,6 +281,7 @@ function searchPlayer() {
 
 db = firebase.firestore();
 
+db.collection('teams').doc(userID).update({transfersLeft: 10})
 
 db.collection('teams').onSnapshot((snapshot) => {
     db.collection("teams").get().then((snapshot) => { // firebase for å hente spillere i lag
@@ -280,7 +300,7 @@ db.collection('teams').onSnapshot((snapshot) => {
         for (j = 0; j < documents1.length;j++) {
             if (documents1[j].id == userID) {
                 playersArr = documents1[j].data().players
-                playersArrSave = playersArr
+                playersArrSave = documents1[j].data().players
                 showTeamNames(documents1[j].data())
             }
         }
