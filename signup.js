@@ -58,12 +58,12 @@ function myFunction2() {
     let a = document.getElementById("password2");
     let b = document.getElementById("hide3");
     let c = document.getElementById("hide4");
-    if (a.type === "password2") {
+    if (a.type === "password") {
       a.type = "text";
       b.style.display = "none";
       c.style.display = "block";
     } else {
-      a.type = "password2";
+      a.type = "password";
       b.style.display = "block";
       c.style.display = "none";
     }

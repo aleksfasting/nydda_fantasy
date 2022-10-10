@@ -5,45 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="userpage.css">
 </head>
 <body>
-<h1>Userpage</h1>
-<h3 id="userID" ></h3>
+  <header>
+    <a href="https://nydalen.vgs.no/"> <img class = "logo" src="logo kopi.png" alt="nydalen logoen" width="90px" height="60px"></a>
+    <ul class = "nav_links">
+              <li class = "nydalen" ><a href="https://nydalen.vgs.no/"> Nydalen </a></li>
+        
+         <div id = "other">
+              <li><a class = "other1" href="playerstats.html" target= "_blank">Player stats</a></li> 
+     
+              <li><a class = "other2" href="teamstats.html"> Team Stats</a></li>
 
-<h1>Performance</h1>
+              <li><a class = "other" href="main2.html">Home</a></li>           
+         </div>
+ 
+          <li><a id = "nrfr" href="https://www.premierleague.com/NoRoomForRacism">No Room For Racism</a></li>
 
-<table>
-  <thead>
-    <tr>
-      <td>GW PTS</td>
-      <td>PTS</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr id="performance"></tr>
-  </tbody>
-</table>
+ 
+</header>
+<div id = "underheader">
+  <img src="fantasybannerriktig kopi 2.jpg" alt="" >
+  <div id = "UID">
+    <h3 id="userID">user-ID: <br></h3>
+  </div>
+</div>
+<main>
+  <div id = "text">
+    <h1> Your Team</h1>
+  </div>
+  <div id = "alt">
+    <div id = "Mboks">
+      <div id = "tabell">
+       <table>
+         <thead>
+           <tr>
+             <th>Name</th>
+             <th>GW PTS</th>
+             <th>PTS</th>
+             <th>Team</th>
+             <th>Pos</th>
+           </tr>
+         </thead>
+         <tbody id="team">
+       
+         </tbody>
+       </table>
+      </div>
+    
+      
+      </div>
+      <div id = "sida">
+        <div id = "Nboks">
+          <h1>Performance</h1>
+        
+          <table id = "performanceTable">
+            <thead>
+              <tr class = "lol">
+                <td class = "lol">GW PTS</td>
+                <td class = "lol">PTS</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="performance"></tr>
+            </tbody>
+          </table>
+          
+        </div>
+        <div id="registerdiv"></div>
+        <div id="transdiv"></div>
+     
+   
+      </div>
+      
+  </div>
 
-<h1>Team</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>GW PTS</th>
-      <th>PTS</th>
-      <th>Team</th>
-      <th>Pos</th>
-    </tr>
-  </thead>
-  <tbody id="team">
-
-  </tbody>
-</table>
-
-<div id="transdiv"></div>
-
-<div id="registerdiv"></div>
+  
+  
+  
+</main>
 
 <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
  

@@ -5,23 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Stats</title>
+    <link rel="stylesheet" href="teamstats.css">
 </head>
 <body>
-
-<h1>Team Stats</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Pos</th>
-            <th>Team</th>
-            <th>Last GW</th>
-            <th>Total Pts</th>
-        </tr>
-    </thead>
-    <tbody>
+<header>
+    <a href="https://nydalen.vgs.no/"> <img class = "logo" src="logo kopi.png" alt="nydalen logoen" width="100px" height="75px"></a>
+    <ul class = "nav_links">
+              <li class = "nydalen" ><a href="https://nydalen.vgs.no/"> Nydalen </a></li>
         
-    </tbody>
-</table>
+         <div id = "other">
+              <li><a class = "other1" href="login.html" target= "_blank">Login</a></li> 
+     
+              <li><a class = "other2" href="playerstats.html">Player Stats</a></li>
+
+              <li><a class = "other" href="main2.html">Home</a></li>           
+         </div>
+ 
+          <li><a id = "nrfr" href="https://www.premierleague.com/NoRoomForRacism">No Room For Racism</a></li>
+
+ 
+</header>
+<main>
+  <div id = "boks">
+    <div id = idk>
+      <div id = "table">
+        <h1>Team Stats</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pos</th>    
+                    <th>Team</th>
+                    <th>Last GW</th>
+                    <th>Total Pts</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+   
+  </div>
+  <div id = "sorteringer">
+    <h2>Sorter etter: </h2>
+      <button id = "TotPTS">   <p> Tot PTS</p>
+       </button>
+
+      <button id = "GWPTS"><p>GW PTS</p></button>
+
+  </div>
+
+      </div>
+  </div>
+   
+</main>
+
 
 <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
  

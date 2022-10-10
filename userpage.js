@@ -15,7 +15,7 @@ url = document.location.href // hente bruker-ID fra url
 expvar = url.split('?')[1]
 userID = expvar.split('=')[1]; // lagre brukeren-ID is userID
 
-document.querySelector('#userID').innerHTML = 'user-ID: ' + userID // vise bruker-ID i h3
+document.querySelector('#userID').innerHTML += userID // vise bruker-ID i h3
 
 
 
@@ -140,15 +140,18 @@ function transferPlayer(evt) {
 
     transDivEl = document.querySelector('#transdiv') // henter divboksen for transfers med id-en transdiv
     h3El = document.createElement('h3')
+    h3El.setAttribute("class", "transferH3")
     playerName = evt.currentTarget.param // henter parameter for navn
     transfersLeft = evt.currentTarget.transfersLeft
 
-    h3El.innerHTML = 'Transfer: ' + playerName
+    h3El.innerHTML = 'Transfer:  <br>' + playerName
     transDivEl.appendChild(h3El)
 
     inputEl = document.createElement('input') // lager søkeboks
     inputEl.setAttribute('onkeyup', 'searchPlayer()')
     inputEl.setAttribute('class', 'input')
+    inputEl.setAttribute('placeholder', 'Search for a player');
+
     if (!Boolean(document.querySelector('.input'))) {
         registerDivEl.appendChild(inputEl)
     }
