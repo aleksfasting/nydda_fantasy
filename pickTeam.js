@@ -46,7 +46,7 @@ db.collection('players').get().then((snapshot) => {
     docs = snapshot.docs;
     for (i=0;i<docs.length;i++) {
         liEl = document.createElement('li')
-        liEl.innerHTML = docs[i].data().name
+        liEl.innerHTML = docs[i].data().name  + ' - ' + docs[i].data().team
         buttonEl = document.createElement('button')
         buttonEl.innerHTML = 'Pick Player'
         buttonEl.addEventListener('click', pickPlayer)
@@ -86,7 +86,7 @@ function lister() {
                 item.style.display = 'none'
                 for (player of playerArr) {
                     h3El = document.createElement('h3')
-                    h3El.innerHTML = player
+                    h3El.innerHTML = player + ' - ' + teamArr[player]
                     showPicksDiv.appendChild(h3El)
                 }
                 homePageButton = document.createElement('button')
