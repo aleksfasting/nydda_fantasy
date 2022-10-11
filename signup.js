@@ -39,7 +39,7 @@ function signup() {
 }
 
 function myFunction() {
-    let x = document.getElementById("password");
+    let x = document.getElementById("password1");
     let y = document.getElementById("hide1");
     let z = document.getElementById("hide2");
     if (x.type === "password") {
