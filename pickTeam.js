@@ -1,10 +1,20 @@
+/*
+Div-en med spillerne i har ID #playerlistDiv
+Hver liste sitt første element er lagnavnet og alle de har klassen .listHead
+
+hvert div for listene med lagene har id ('#div' + lagnavn) uten mellomrom
+For eksempel har 'Trust The Process' boksen id-en '#divTrustTheProcess'
+
+listen inni div-boksen har id '#ulTrustTheProcess'
+*/
+
 url = document.location.href
 username = url.split('?')[1]
 password = url.split('?')[2]
 
 db = firebase.firestore()
 
-ulEl = document.querySelector('#playerlist')
+playerListDiv = document.querySelector('#playerlistDiv')
 
 inputEl = document.querySelector('#input')
 nameButtonEl = document.querySelector('#nameButton')
@@ -44,9 +54,27 @@ function pickName() {
 function cont() {
 db.collection('players').get().then((snapshot) => {
     docs = snapshot.docs;
-    for (i=0;i<docs.length;i++) {
+    for (i=0; i<docs.length; i++) {
+        ulEl = document.querySelector(('#ul' + docs[i].data().team).replaceAll(' ', ''))
+        if (ulEl == undefined) {
+            divEl = document.createElement('div')
+            divEl.setAttribute('id', ('div' + docs[i].data().team).replaceAll(' ', ''))
+
+            ulEl = document.createElement('ul')
+            ulEl.setAttribute('id', ('ul' + docs[i].data().team).replaceAll(' ', ''))
+    
+            liEl = document.createElement('li')
+            liEl.innerHTML = docs[i].data().team
+            liEl.setAttribute('class', 'listHead')
+    
+            ulEl.appendChild(liEl)
+            playerListDiv.appendChild(ulEl)
+        }
+    }
+    for (i=0; i<docs.length; i++) {
         liEl = document.createElement('li')
-        liEl.innerHTML = docs[i].data().name  + ' - ' + docs[i].data().team
+        liEl.innerHTML = docs[i].data().name
+
         buttonEl = document.createElement('button')
         buttonEl.innerHTML = 'Pick Player'
         buttonEl.addEventListener('click', pickPlayer)
@@ -54,15 +82,18 @@ db.collection('players').get().then((snapshot) => {
         buttonEl.team = docs[i].data().team
         buttonEl.keeper = docs[i].data().keeper
         buttonEl.setAttribute('class','transButtons')
+
         liEl.appendChild(buttonEl)
         liEl.id = docs[i].id
         liEl.name = docs[i].data().name
         liEl.team = docs[i].data().team
         liEl.keeper = docs[i].data().keeper
         liEl.setAttribute('class', 'playerItem')
-        items.push(liEl)
 
+        ulEl = document.querySelector(('#ul' + docs[i].data().team).replaceAll(' ', ''))
         ulEl.appendChild(liEl)
+
+        items.push(liEl)
     }
 })
 }
@@ -138,7 +169,6 @@ function searchPlayer() {
             a[i].style.display="none";
         } else {
             a[i].appendChild(b[i])
-            ulEl.appendChild(a[i])
             a[i].style.display="list-item";
         }
     }
