@@ -10,6 +10,9 @@ inputEl = document.querySelector('#input')
 nameButtonEl = document.querySelector('#nameButton')
 nameButtonEl.addEventListener('click', pickName)
 
+searchEl = document.querySelector('#searchbar')
+searchEl.setAttribute('onkeyup', 'searchPlayer()')
+
 function pickName() {
     showPicksDiv = document.querySelector('#showPicksDiv')
     showPicksDiv.innerHTML = ''
@@ -50,11 +53,13 @@ db.collection('players').get().then((snapshot) => {
         buttonEl.name = docs[i].data().name
         buttonEl.team = docs[i].data().team
         buttonEl.keeper = docs[i].data().keeper
+        buttonEl.setAttribute('class','transButtons')
         liEl.appendChild(buttonEl)
         liEl.id = docs[i].id
         liEl.name = docs[i].data().name
         liEl.team = docs[i].data().team
         liEl.keeper = docs[i].data().keeper
+        liEl.setAttribute('class', 'playerItem')
         items.push(liEl)
 
         ulEl.appendChild(liEl)
@@ -121,4 +126,20 @@ function pickPlayer(evt) {
         keeper  = true
     }
     lister()
+}
+
+function searchPlayer() {
+    let input = document.querySelector('#searchbar').value
+    input = input.toLowerCase()
+    let a = document.getElementsByClassName('playerItem');
+    let b = document.getElementsByClassName('transButtons')
+    for (i = 0; i < a.length; i++) {
+        if (!a[i].innerHTML.toLowerCase().includes(input)) {
+            a[i].style.display="none";
+        } else {
+            a[i].appendChild(b[i])
+            ulEl.appendChild(a[i])
+            a[i].style.display="list-item";
+        }
+    }
 }
