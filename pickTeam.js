@@ -24,8 +24,6 @@ searchEl = document.querySelector('#searchbar')
 searchEl.setAttribute('onkeyup', 'searchPlayer()')
 
 function pickName() {
-    showPicksDiv = document.querySelector('#showPicksDiv')
-    showPicksDiv.innerHTML = ''
     teamNameExists = false
     playerArr = []
     teamArr = []
@@ -41,9 +39,19 @@ function pickName() {
             }
         }
         if (!teamNameExists) {
-            h2El = document.createElement('h2')
+            div0 = document.querySelector('#FuckCSS')
+            div0.innerHTML = ''
+            h2El = document.createElement('h1')
+            h2El.innerHTML = 'Your Team:'
+            div0.appendChild(h2El)
+            div1 = document.querySelector('#RegInP')
+            div1.innerHTML = ''
+            div2 = document.createElement('div')
+            div2.setAttribute('id','shizasdiv')
+            h2El = document.createElement('h1')
             h2El.innerHTML = teamName
-            showPicksDiv.appendChild(h2El)
+            div2.appendChild(h2El)
+            div1.appendChild(div2)
             cont()
         } else {
             window.alert('Team Name already exists')
@@ -113,11 +121,19 @@ function lister() {
                 item.style.display = 'none'
             }
             if (playerArr.length == 5 && listed == false) {
+                div5 = document.querySelector('#around')
+                div5.innerHTML = ''
+                div9 = document.createElement('div')
+                div9.innerHTML = '<h1>Your Players:</h1>'
+                div9.setAttribute('id', 'denSisteDivenJegLager')
+                showPicksDiv = document.createElement('div')
+                showPicksDiv.appendChild(div9)
+                showPicksDiv.setAttribute('id','showPicksDiv')
                 listed = true
                 item.style.display = 'none'
                 for (player of playerArr) {
                     h3El = document.createElement('h3')
-                    h3El.innerHTML = player + 
+                    h3El.innerHTML = player
                     showPicksDiv.appendChild(h3El)
                 }
                 homePageButton = document.createElement('button')
@@ -133,6 +149,7 @@ function lister() {
                 homePageButton.innerHTML = 'Take me to the user-page'
                 homePageButton.addEventListener('click',confirm)
                 showPicksDiv.appendChild(homePageButton)
+                div5.appendChild(showPicksDiv)
             }
         }
     }
