@@ -4,22 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pick Team</title>
+    <link rel="stylesheet" href="pickTeam.css">
+
 </head>
 <body>
+  <header>
+    <a href="https://nydalen.vgs.no/"> <img class = "logo" src="logo kopi.png" alt="nydalen logoen" width="90px" height="60px"></a>
+    <ul class = "nav_links">
+              <li class = "nydalen" ><a href="https://nydalen.vgs.no/"> Nydalen </a></li>
+        
+         <div id = "other">
+              <li><a class = "other1" href="playerstats.html" target= "_blank">Player stats</a></li> 
+     
+              <li><a class = "other2" href="teamstats.html"> Team Stats</a></li>
 
-<h1>Pick Team</h1>
+              <li><a class = "other" href="main2.html">Home</a></li>           
+         </div>
+ 
+    
+           <div id = "line"></div>
+          <li><a id = "nrfr" href="https://www.premierleague.com/NoRoomForRacism">No Room For Racism</a></li>
 
-<input id='input' placeholder="Team Name">
-<button id="nameButton">Pick Name</button>
+         
 
-<div id="players">
-    <h2>Players</h2>
-    <input type="text" placeholder="Search Player" id="searchbar">
-    <div id="playerlistDiv"></div>
-</div>
+ 
+</header>
+<div id = "underheader">
+  <img src="fantasybannerriktig kopi 2.jpg" alt="">
+  
+  </div>
+<main>
+  <div id = "Nboks">
+    <h1 id = "pytn">Pick Your Team Name</h1>
+    <div id = "RegInP">
+     <div class = "input"><input id='input' placeholder="Team Name"></div> 
+      <button id="nameButton">Register Name</button>
+    </div>
+   
+  </div>
+  
+ 
+  <div id="showPicksDiv"></div>
+  <div id = "around">
+    <div id = "textish">
+      <h1 class = "pyp">Pick 5 Players</h1>
+      <div id="players">
+        <input  type="text" placeholder="Search Player" id="searchbar">
+    </div>
+    </div>
+    <div id="playerlistDiv">  
+      
+    </div>
+  
+  </div>
+ 
+</main>
 
-<div id="showPicksDiv"></div>
 
 <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
  
