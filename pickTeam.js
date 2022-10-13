@@ -117,17 +117,19 @@ function lister() {
                 item.style.display = 'none'
                 for (player of playerArr) {
                     h3El = document.createElement('h3')
-                    h3El.innerHTML = player + ' - ' + teamArr[player]
+                    h3El.innerHTML = player + 
                     showPicksDiv.appendChild(h3El)
                 }
                 homePageButton = document.createElement('button')
+                /*
                 db.collection('teams').add({
                     name: teamName,
                     players: playerArr,
                     transfersleft: 2,
                     usrnm: username,
                     psswrd: password
-                })
+             
+                })   */
                 homePageButton.innerHTML = 'Take me to the user-page'
                 homePageButton.addEventListener('click',confirm)
                 showPicksDiv.appendChild(homePageButton)
