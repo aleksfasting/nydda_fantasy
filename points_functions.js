@@ -5,6 +5,9 @@ let motm = 4;
 
 
 function calcPointsRound(i, Goals, Assists, MOTM, CS) {
+    if (Goals == undefined) {
+        return 0
+    }
     let points = goal * Goals[i] + assist * Assists[i] + motm * MOTM[i] + cleansheet * CS[i];
     return points
 }
