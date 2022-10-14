@@ -63,13 +63,13 @@ function cont() {
 db.collection('players').get().then((snapshot) => {
     docs = snapshot.docs;
     for (i=0; i<docs.length; i++) {
-        ulEl = document.querySelector(('#ul' + docs[i].data().team).replaceAll(' ', ''))
+        ulEl = document.querySelector(('#ul' + docs[i].data().team).replaceAll(' ', '').replaceAll('.',''))
         if (ulEl == undefined) {
             divEl = document.createElement('div')
-            divEl.setAttribute('id', ('div' + docs[i].data().team).replaceAll(' ', ''))
+            divEl.setAttribute('id', ('div' + docs[i].data().team).replaceAll(' ', '').replaceAll('.',''))
 
             ulEl = document.createElement('ul')
-            ulEl.setAttribute('id', ('ul' + docs[i].data().team).replaceAll(' ', ''))
+            ulEl.setAttribute('id', ('ul' + docs[i].data().team).replaceAll(' ', '').replaceAll('.',''))
     
             liEl = document.createElement('li')
             liEl.innerHTML = docs[i].data().team
@@ -98,7 +98,7 @@ db.collection('players').get().then((snapshot) => {
         liEl.keeper = docs[i].data().keeper
         liEl.setAttribute('class', 'playerItem')
 
-        ulEl = document.querySelector(('#ul' + docs[i].data().team).replaceAll(' ', ''))
+        ulEl = document.querySelector(('#ul' + docs[i].data().team).replaceAll(' ', '').replaceAll('.',''))
         ulEl.appendChild(liEl)
 
         items.push(liEl)
