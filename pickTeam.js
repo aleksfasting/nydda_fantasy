@@ -114,12 +114,15 @@ function lister() {
             team = teamArr[j]
             if (team == item.team) {
                 item.style.display = 'none'
+                item.setAttribute('class','disabled')
             }
             if (keeper == true && item.keeper == true) {
                 item.style.display = 'none'
+                item.setAttribute('class','disabled')
             }
             if (playerArr.length == 4 && keeper == false && item.keeper == false) {
                 item.style.display = 'none'
+                item.setAttribute('class','disabled')
             }
             if (playerArr.length == 5 && listed == false) {
                 div5 = document.querySelector('#around')
