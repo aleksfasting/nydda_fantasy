@@ -42,7 +42,8 @@ function pickName() {
             div0 = document.querySelector('#FuckCSS')
             div0.innerHTML = ''
             h2El = document.createElement('h1')
-            h2El.innerHTML = 'Your Team:'
+            h2El.innerHTML = 'Your Team Name:'
+            h2El.setAttribute("class", "Addie")
             div0.appendChild(h2El)
             div1 = document.querySelector('#RegInP')
             div1.innerHTML = ''
