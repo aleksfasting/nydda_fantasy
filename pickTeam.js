@@ -133,12 +133,15 @@ function lister() {
                 showPicksDiv = document.createElement('div')
                 showPicksDiv.appendChild(div9)
                 showPicksDiv.setAttribute('id','showPicksDiv')
+                div1000 = document.createElement('div')
+                div1000.setAttribute('id', 'jegløy')
                 listed = true
                 item.style.display = 'none'
                 for (player of playerArr) {
                     h3El = document.createElement('h3')
                     h3El.innerHTML = player
-                    showPicksDiv.appendChild(h3El)
+                    div1000.appendChild(h3El)
+                    showPicksDiv.appendChild(div1000)
                 }
                 homePageButton = document.createElement('button')
                 /*
@@ -152,7 +155,8 @@ function lister() {
                 })   */
                 homePageButton.innerHTML = 'Take me to the user-page'
                 homePageButton.addEventListener('click',confirm)
-                showPicksDiv.appendChild(homePageButton)
+                homePageButton.setAttribute("class", "moro")
+                div1000.appendChild(homePageButton)
                 div5.appendChild(showPicksDiv)
             }
         }
@@ -196,3 +200,11 @@ function searchPlayer() {
         }
     }
 }
+let input = document.getElementById("input");
+
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("nameButton").click();
+  }
+});

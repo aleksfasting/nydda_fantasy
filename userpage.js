@@ -207,7 +207,7 @@ function transInFunc(evt) {
 
     if (!Boolean(document.querySelector('#registerButton'))) {
         registerEl = document.createElement('button')
-        registerEl.innerHTML = 'Register Transfers'
+        registerEl.innerHTML = 'Register'
         registerEl.setAttribute('id','registerButton')
         registerEl.addEventListener('click', registerTrans)
         registerDivEl.appendChild(registerEl)

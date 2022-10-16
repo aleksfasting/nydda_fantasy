@@ -10,12 +10,10 @@ body{
     "m";
     background: linear-gradient(120deg, #2980b9, #8e44ad);
     height: 655px;
-
-}
-
-*{
     font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+
 }
+
 header{
     grid-area: h;
     height: 80px;
@@ -23,6 +21,7 @@ header{
     display: flex;
     justify-content: end;
     align-items: center;
+
 }
 
 header > a{
@@ -144,7 +143,6 @@ input{
     border: 0px;
     border-radius: 2px 2px 0px 0px;
     background-color: rgba(126, 110, 110, 0.363);
-    font-family: PremierSans-Regular, Arial, "Helvetica Neue", Helvetica, "sans-serif";
     font-size: 16px;
 }
 
@@ -156,7 +154,6 @@ input{
     border-radius: 3px;
     background-image: linear-gradient(to right, rgb(0, 255, 135), rgb(2, 239, 255));
     color: rgb(55, 0, 60);
-    font-family: PremierSans-Bold, Arial, "Helvetica Neue", Helvetica, sans-seriff;
     font-size: 1.2rem;
     box-shadow: rgb(0 0 0 / 50%) 1px 1px 10px -4px;
     cursor: pointer;
@@ -164,7 +161,7 @@ input{
 }
 
 #loginbutton:hover{
-    transition: all 0.3s ease 0s;
+    transition: all 0.9s ease 3s;
     background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(253, 253, 253));
 
 }
@@ -191,7 +188,7 @@ h3{
 #eye{
     margin: 400px;
     position: absolute;
-    top: -7%;
+    top: -8%;
 
 }
 
@@ -259,3 +256,5 @@ h3{
     
     }
 }
+
+

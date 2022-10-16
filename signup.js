@@ -36,6 +36,9 @@ function signup() {
             }
         })
     }
+    else{
+      window.alert("The passwords aren`t the same");
+    }
 }
 
 function myFunction() {
@@ -69,3 +72,11 @@ function myFunction2() {
     }
   }
   
+let input = document.getElementById("password2");
+
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("loginbutton").click();
+  }
+});

@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    height: 900px;
+    height: 950px;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(7,1fr);
@@ -13,8 +13,10 @@ body{
                         "m m m "
                         "m m m "
     ;
+    font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
 }
+
 
 header{
     display: flex;
@@ -68,10 +70,20 @@ img{
     color:rgb(255, 255, 255);
     text-decoration: none;
     font-size: 17px;
-    font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
 }
 
+.nrfr::after {
+    background: rgba(255, 255, 255, 0.2);
+    bottom: 1.2rem;
+    content: '';
+    display: block;
+    height: auto;
+    left: 0;
+    position: absolute;
+    top: 1.2rem;
+    width: 1px;
+}
 .nav_links li a:hover:not(#nrfr){
     transition: all 0.3s ease 0s;
     color:rgb(0, 0, 0);
@@ -87,15 +99,23 @@ img{
     
 }
 
+#other{
+    position: absolute;
+    right: 17%;
+}
 
 #underheader{
     grid-area: uh;
-    margin-top: -45px;
+    margin-top: -50px;
     width: 100%;
-    height: 240px;
     position: relative;
 }
 
+#line{
+    height: 40px;
+    width: 0;
+    border: 1px solid grey;
+}
 #UID{
     position: absolute;
     top: 0;
@@ -117,7 +137,7 @@ img{
     line-height: 1;
     cursor: pointer;
     padding: 7px 7px;
-    margin-left: 180px;
+    margin-left: 200px;
     margin-top: -15px;
     box-shadow: rgb(107 107 107 / 32%) 0px 8px 12px 0px;
     align-items: center;
@@ -180,15 +200,13 @@ img{
     margin-left: 30px;
     padding: 3px 15px;
     box-shadow: rgb(107 107 107 / 32%) 0px 8px 12px 0px;
-    height: 500px;
-    width: 750px;
+    height: 470px;
+    width: 770px;
     background-color: #f5f0f05b;
 }
 
-table{
-    margin-top: 20px;
-    padding: 30px 55px;
-   
+#lol{
+    margin-top: 50px;
 
 }
 #transdiv{
@@ -196,7 +214,7 @@ table{
     border-radius: 6px;
     background-color: #D6D6E7;
     margin-top: 20px;
-    height: 250px;
+    height: 270px;
     margin-left: -20px;
     overflow: auto;
    
@@ -219,6 +237,7 @@ table{
 #alt{
     display: flex;
     gap: 80px;
+    width: 100%;
 }
 
 #Nboks{
@@ -235,13 +254,17 @@ table{
     text-align: center;
 }
 
-
+#Nboks > h1{
+    position: relative;
+    top: 5%;
+}
 #performanceTable{
     border-collapse: collapse;
     border-bottom: 2px solid #3f4259;
-    margin-top: 10%;
+    margin-top: 13%;
     margin-left: 19%;
 }
+
 
 thead > tr {
     background-color:#37003c;
@@ -253,12 +276,14 @@ tbody > tr{
 
 th, td{
     border: 1px solid #000000;
-    padding: 15px 20px;
+    padding: 15px 35px;
   
 }
 
 .lol{
     width: 70px;
+    padding: 15px 20px;
+
 }
 main{
     margin-top: -40px;
@@ -298,25 +323,276 @@ main{
     text-align: center;
     line-height: 1;
     cursor: pointer;
-    padding: 7px 7px;
+    padding: 7px 27px;
     box-shadow: rgb(107 107 107 / 32%) 0px 8px 12px 0px;
-    width: 100px;
+    width: 150px;
    
 
 }
 
-@media only screen and (max-width: 600px){
-    .nav_links li{
-        display:block;
-        margin: 10px;
-    
+
+@media only screen and (max-width: 1270px){
+    #alt{
+        gap: 40px;
+    }
+    #tabell{
+        margin-left: 30px;
+        padding: 3px 15px;
+        box-shadow: rgb(107 107 107 / 32%) 0px 8px 12px 0px;
+        height: 330px;
+        width: 570px;
+        background-color: #f5f0f05b;
     }
 
-    #nrfr{
-       position: relative;
-       top: 40%;
+    #Nboks{
+        border-radius: 6px;
+        margin-top: -80px;
+        background-repeat: no-repeat;
+        background-position: 0px center, right top, 0px center;
+        background-image: linear-gradient(rgba(255, 255, 255, 0) 10px, rgba(255, 255, 255, 0.2) 30px, white 70px), url(pattern-2-crop-90.0e86ae39.png), linear-gradient(to right, rgb(2, 239, 255), rgb(98, 123, 255));
+        box-shadow: rgb(107 107 107 / 18%) 8px 8px 12px 5px;
+        width: 270px;
+        height: 160px;
+        border-radius: 6px;
+        color: #37003c;
+        text-align: center;
     }
- 
+    
+    
+    #performanceTable{
+        border-collapse: collapse;
+        border-bottom: 2px solid #3f4259;
+        margin-top: 13%;
+        margin-left: 16%;
+    }
+    th, td{
+        border: 1px solid #000000;
+        padding: 5px 15px;
+      
+    }
+    #lol{
+        margin-top: 3px;
+    }
+    #transdiv{
+        box-shadow: rgb(107 107 107 / 32%) 0px 8px 12px 0px;
+        border-radius: 6px;
+        background-color: #D6D6E7;
+        margin-top: 20px;
+        height: 230px;
+        margin-left: -10px;
+        overflow: auto;
+       
+    }
+    
+.lol{
+    width: 70px;
+    padding: 5px 10px;
+
+}
+}
+@media only screen and (max-width: 1150px){
+    #other{
+        position: absolute;
+        right: 40%;
+    }
+
+  
+}
+
+@media only screen and (max-width: 1000px){
+    body{
+        overflow-x: hidden;
+    }
+    header{
+        position: relative;
+    }
+    #sida{
+        position: relative;
+    
+        
+    }
+    #Nboks{
+        border-radius: 6px;
+        background-repeat: no-repeat;
+        background-position: 0px center, right top, 0px center;
+        background-image: linear-gradient(rgba(255, 255, 255, 0) 10px, rgba(255, 255, 255, 0.2) 30px, white 70px), url(pattern-2-crop-90.0e86ae39.png), linear-gradient(to right, rgb(2, 239, 255), rgb(98, 123, 255));
+        box-shadow: rgb(107 107 107 / 18%) 8px 8px 12px 5px;
+        width: 270px;
+        height: 160px;
+        border-radius: 6px;
+        color: #37003c;
+        text-align: center;
+        position: absolute;
+        top: 130%;
+        left: -210%;
+    }
+
+    #transdiv{
+        box-shadow: rgb(107 107 107 / 32%) 0px 8px 12px 0px;
+        border-radius: 6px;
+        background-color: #D6D6E7;
+        margin-top: 20px;
+        height: 270px;
+        overflow: auto;
+        position: absolute;
+        top: 100%;
+        left: -110%;
+       
+    }
+
+    
+    .input{
+        margin: 0;
+        line-height: normal;
+        width: 80%;
+        border: 0px;
+        height: 10px;
+        position: absolute;
+        top: 170%;
+        left: -210%;
+        border-radius: 4px;
+        background-color: white;
+        font-size: inherit;
+        padding: 10px;
+        -webkit-appearance: textfield;
+        box-sizing: inherit;
+        border: 1px solid black;
+        box-shadow: rgb(107 107 107 / 18%) 6px 6px 10px 3px;
+    
+    }    
+       
+
+}
+@media only screen and (max-width: 900px){
+    .nydalen{
+        position: absolute;
+        left: 11%;
+    }
+  
+
+}
+
+@media only screen and (max-width: 800px){
+    .nydalen{
+       display: none !important;
+    }
+main{
+    margin-top: -130px;
+}
+    #UID{
+        font-size:12px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+}
+@media only screen and (max-width: 690px){
+
+
+    #tabell{
+        margin-left: 30px;
+        padding: 3px 15px;
+        box-shadow: rgb(107 107 107 / 32%) 0px 8px 12px 0px;
+        height: 370px;
+        width: 400px;
+        background-color: #f5f0f05b;
+    }
+    main{
+        margin-top: -190px;
+    }
+#lol{
+    width: 290px;
+    height: 360px;
+}
+
+th, td{
+    border: 1px solid #000000;
+    padding: 3px 3px;
+  
+}
+
+#Nboks{
+    border-radius: 6px;
+    background-repeat: no-repeat;
+    background-position: 0px center, right top, 0px center;
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 10px, rgba(255, 255, 255, 0.2) 30px, white 70px), url(pattern-2-crop-90.0e86ae39.png), linear-gradient(to right, rgb(2, 239, 255), rgb(98, 123, 255));
+    box-shadow: rgb(107 107 107 / 18%) 8px 8px 12px 5px;
+    width: 170px;
+    height: 60px;
+    border-radius: 6px;
+    color: #37003c;
+    text-align: center;
+    position: absolute;
+    top: 130%;
+    left: -155%;
+}
+#performanceTable{
+    border-collapse: collapse;
+    border-bottom: 2px solid #3f4259;
+    margin-top: 13%;
+    margin-left: 2%;
+}
+
+#Nboks> h1{
+    font-size: 25px;
+    position: relative;
+    top: 5%;
+}
+
+#transdiv{
+    box-shadow: rgb(107 107 107 / 32%) 0px 8px 12px 0px;
+    border-radius: 6px;
+    background-color: #D6D6E7;
+    margin-top: 20px;
+    height: 230px;
+    width: 230px;
+    margin-left: -10px;
+    overflow: auto;
+    position: absolute;
+    left: -90%;
+}
+.input{
+    margin: 0;
+    line-height: normal;
+    width: 50%;
+    border: 0px;
+    height: 10px;
+    position: absolute;
+    top: 150%;
+    left: -160%;
+    border-radius: 4px;
+    background-color: white;
+    font-size: inherit;
+    padding: 10px;
+    -webkit-appearance: textfield;
+    box-sizing: inherit;
+    border: 1px solid black;
+    box-shadow: rgb(107 107 107 / 18%) 6px 6px 10px 3px;
+
+}    
+   
+}
+
+
+
+@media only screen and (max-width: 600px){
+    .nav_links li{
+        margin: 10px;
+        font-size: 14px;
+    }
+
+    header{
+        position: relative;
+    }
+    #other{
+        position: absolute;
+        left: 20%;
+        width: 800px;
+    }
+    #nrfr{
+        display: none;
+     }
 
     .nav_links li a:hover:not(#nrfr){
         transition: all 0.3s ease 0s;
@@ -327,25 +603,40 @@ main{
         border-radius: 8px;
         text-decoration: underline;
     }
-}
 
-@media only screen and (max-width: 900px){
-    .nydalen{
+    #UID{
+        font-size: 10px;
         position: absolute;
-        left: 11%;
+        top: 0;
+        right: -10%;
+    }
+    .transferOutButton{
+        background-image: linear-gradient(to right, rgb(0, 255, 135), rgb(2, 239, 255));
+        border-radius: 3px;
+        padding: 0.2rem;
+        border: none;
+        font-family: PremierSans-Bold, Arial, "Helvetica Neue", Helvetica, sans-seriff;
+        text-align: center;
+        line-height: 1;
+        cursor: pointer;
+        padding: 10px 5px;
+        margin-left: 10px;
+        margin-top: 7px;
+        box-shadow: rgb(107 107 107 / 32%) 0px 8px 12px 0px;
+    
     }
 }
 
-@media only screen and (max-width: 800px){
-    .nydalen{
-       display: none !important;
+@media only screen and (max-width: 400px){
+    .nav_links li a{
+        transition: all 0.3s ease 0s;
+        text-align: center;
+        color:rgb(255, 255, 255);
+        text-decoration: none;
+        font-size: 9px;
+        font-family: 'Times New Roman', Times, serif;
+    
     }
-}
 
-@media only screen and (max-width: 1270 px){
-    #alt{
-        display: grid;
-    }
-
-
+  
 }

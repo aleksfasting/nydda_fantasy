@@ -21,7 +21,7 @@ body{
                         
                       
     ;
-
+font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -49,6 +49,8 @@ header{
     position: sticky;
     top: 0;
     z-index: 100;
+    font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+
     
 }
 #underheader{
@@ -63,6 +65,8 @@ header{
     list-style: none;
     padding: 0px 20px;
     display: flex;
+    font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+
 
 
 }
@@ -79,8 +83,7 @@ header{
     text-align: center;
     color:rgb(255, 255, 255);
     text-decoration: none;
-    font-size: 19px;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 17px;
 
 }
 .nav_links li a:hover:not(#nrfr){
@@ -202,7 +205,7 @@ h2{
     padding: 20px 10px;
     width: 400px;
     position: absolute;
-    top: 17%;
+    top: 20%;
     left: 17%;
     box-shadow: rgb(107 107 107 / 62%) 5px 8px 12px 0px;
 }
@@ -273,6 +276,7 @@ main{
     align-items: center;
     justify-content: center;
     list-style: none;
+    text-decoration: none;
     width: 280px;
     height: 90px;
     margin: 25px 30px;
@@ -287,7 +291,6 @@ main{
     border-radius: 10px;
     font-size: 20px;
     color: white;
-    text-decoration: none;
     padding: 10px 20px;
     box-shadow: rgb(107 107 107 / 62%) 5px 13px 12px 0px;
     border: 1px solid;
@@ -298,6 +301,11 @@ main{
     width: 280px;
     height: 90px;
     margin: 25px 20px;
+}
+
+a{
+    text-decoration: none;
+
 }
 
 #pStats:hover{
@@ -311,5 +319,12 @@ main{
     padding: 41px 10px;
     background-color: #37003ccb;
     color: black;
+}
+
+@media only screen and (max-width: 1150px){
+    #other{
+        position: absolute;
+        right: 40%;
+    }
 }
 

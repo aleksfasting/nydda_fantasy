@@ -3,8 +3,9 @@ body{
     padding: 0;
     height: 750px;
     background-color: rgb(179, 175, 175);
-}
+    font-family: Arial, Helvetica, sans-serif;
 
+}
 
 header{
     display: flex;
@@ -16,14 +17,18 @@ header{
     border: 1px solid black;
     
 }
-
+#line{
+    height: 40px;
+    width: 0;
+    border: 1px solid grey;
+}
 main{
     grid-area: m;
     width: 98%;
-    height: 620px;
+    height: 630px;
     background-color: rgba(255, 255, 255, 0.781);
     margin: auto;
-    margin-top: 20px;
+    margin-top: 29px;
   
 }
 
@@ -115,21 +120,23 @@ tbody > tr{
 
 button{
     margin: 20px;
-    background-color: rgba(128, 128, 128, 0.616);
+    background-color: transparent;
     text-align: center;
     border-radius: 6px;
     color:rgb(0, 0, 0);
     text-decoration: none;
-    padding: 20px 100px;
+    padding: 5px 130px;
     border: 1px solid;
     display: flex;
+    box-shadow: rgb(107 107 107 / 32%) 0px 8px 12px 0px;
+
 }
 
 button:hover{
     transition: all 0.3s ease 0s;
     color:rgb(0, 0, 0);
     background-color: rgba(61, 25, 91, 0.596);
-    padding: 15px 90px; 
+    padding: 5px 125px; 
     border-radius: 8px;
     text-decoration: underline;
 }
@@ -145,22 +152,24 @@ h1{
     text-align: center;
 }
 
-
+#sorteringer{
+    margin-top: -30px;
+}
 
 
 @media only screen and (max-width: 600px){
     .nav_links li{
-        display:block;
         margin: 10px;
-    
     }
 
     #nrfr{
-       position: relative;
-       top: 40%;
+       display: none;
     }
  
+    button{
+        padding: 20px 60px;
 
+    }
     .nav_links li a:hover:not(#nrfr){
         transition: all 0.3s ease 0s;
         color:rgb(0, 0, 0);
@@ -170,13 +179,27 @@ h1{
         border-radius: 8px;
         text-decoration: underline;
     }
+
 }
+
 
 @media only screen and (max-width: 900px){
     .nydalen{
         position: absolute;
         left: 11%;
     }
+    h2{
+        font-size: 30px;
+        margin-top: 10%;
+    }
+    #bbl{
+        display: flex;
+    }
+
+    #boks{
+        display: block;
+    }
+   
 
 }
 
@@ -185,16 +208,14 @@ h1{
        display: none !important;
     }
 
-    #boks{
-        display: block;
-       
     
+    button{
+        padding: 10px 90px;
+
     }
-    h2{
-        font-size: 30px;
-        margin-top: 20%;
+    #bbl{
+        display: flex;
     }
-    
 }
 
 
@@ -206,7 +227,5 @@ h1{
         margin: 1px;
     
     }
-    
 }
-
 
