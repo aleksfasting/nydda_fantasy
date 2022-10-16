@@ -21,7 +21,7 @@ body{
                         
                       
     ;
-font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -309,7 +309,7 @@ a{
 }
 
 #pStats:hover{
-    width: 278px;
+ 
     height: 88px;
     background-color: #37003ccb;
     color: black;
@@ -320,11 +320,336 @@ a{
     background-color: #37003ccb;
     color: black;
 }
+@media only screen and (max-width: 1300px){
+  
 
+    #sg{
+      
+        position: absolute;
+        top: 57%;
+        left: 14%;
+      
+    }
+    #lg{
+  
+        position: absolute;
+        top: 20%;
+        left: 14%;
+       
+    }
+}
+
+@media only screen and (max-width: 1200px){
+ 
+
+    #sg{
+      
+        position: absolute;
+        top: 57%;
+        left: 14%;
+        padding: 20px 10px;
+        width: 300px;
+    }
+    #lg{
+  
+        position: absolute;
+        top: 20%;
+        left: 14%; 
+        padding: 20px 10px;
+        width: 300px;
+    }
+    main{
+        margin-top: -50px;
+    }
+}
 @media only screen and (max-width: 1150px){
     #other{
         position: absolute;
         right: 40%;
     }
+    
+#about{
+    border-radius: 6px;
+    background-repeat: no-repeat;
+    background-position: 0px center, right top, 0px center;
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 10px, rgba(255, 255, 255, 0.2) 30px, white 60px), url(pattern-2-crop-184.d7588c45.png), linear-gradient(to right, rgb(2, 239, 255), rgb(98, 123, 255));
+    box-shadow: rgb(107 107 107 / 18%) 8px 8px 12px 5px;
+    width: 450px;
+    height: 160px;
+    border-radius: 16px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 30px;
+    grid-area: a;
+    position: relative;
+}
+p{
+    font-size: 14px;
+}
+#pStats{
+    padding: 10px 20px;
+    width: 200px;
+    height: 90px;
+    margin: 25px 30px;
+    box-shadow: rgb(107 107 107 / 62%) 5px 13px 12px 0px;
+
 }
 
+#tStats{
+    border-radius: 10px;
+    font-size: 20px;
+    width: 200px;
+    height: 90px;
+    margin: 25px 20px;
+}
+
+#sg{
+      
+    position: absolute;
+    top: 57%;
+    left: 14%;
+    padding: 20px 10px;
+    width: 350px;
+}
+#lg{
+
+    position: absolute;
+    top: 20%;
+    left: 14%; 
+    padding: 20px 10px;
+    width: 350px;
+}
+
+}
+
+@media only screen and  (max-width:1030px){
+
+    #sg{
+      
+        position: absolute;
+        top: 57%;
+        left: 14%;
+        padding: 20px 10px;
+        width: 270px;
+    }
+    #lg{
+    
+        position: absolute;
+        top: 20%;
+        left: 14%; 
+        padding: 20px 10px;
+        width: 270px;
+    }
+
+}
+
+
+@media only screen and (max-width: 900px){
+
+    #sg{
+      
+    position: absolute;
+    top: 57%;
+    left: 14%;
+    padding: 20px 10px;
+    width: 250px;
+}
+#lg{
+
+    position: absolute;
+    top: 20%;
+    left: 14%; 
+    padding: 20px 10px;
+    width: 250px;
+}
+#pStats{
+    padding: 10px 20px;
+    width: 150px;
+    height: 90px;
+    margin: 25px 30px;
+    box-shadow: rgb(107 107 107 / 62%) 5px 13px 12px 0px;
+
+}
+
+#tStats{
+    border-radius: 10px;
+    font-size: 20px;
+    width: 150px;
+    height: 90px;
+    margin: 25px 20px;
+}
+    
+#about{
+    width: 350px;
+    height: 160px;
+    border-radius: 16px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 30px;
+    grid-area: a;
+    position: relative;
+}
+
+}
+
+@media only screen and (max-width: 800px){
+    .nydalen{
+      display: none !important;
+    }
+ 
+    main{
+        margin-top: -80px;}
+
+        #sg{
+      
+            position: absolute;
+            top: 57%;
+            left: 14%;
+            padding: 20px 10px;
+            width: 190px;
+        }
+        #lg{
+        
+            position: absolute;
+            top: 20%;
+            left: 14%; 
+            padding: 20px 10px;
+            width: 190px;
+        }
+}
+@media only screen and (max-width: 730px){
+    #sg{
+      
+        position: absolute;
+        top: 57%;
+        left: 14%;
+        padding: 20px 10px;
+        width: 160px;
+    }
+    #lg{
+    
+        position: absolute;
+        top: 20%;
+        left: 14%; 
+        padding: 20px 10px;
+        width: 160px;
+    }
+}
+@media only screen and (max-width: 670px){
+    #sg{
+      
+        position: absolute;
+        top: 57%;
+        left: 14%;
+        padding: 20px 10px;
+        width: 130px;
+    }
+    #lg{
+    
+        position: absolute;
+        top: 20%;
+        left: 14%; 
+        padding: 20px 10px;
+        width: 130px;
+    }
+ 
+}
+
+@media only screen and (max-width: 640px){
+    body{
+        overflow-x:hidden ;
+    }
+    #sg{
+      
+        position: absolute;
+        top: 57%;
+        left: 14%;
+        padding: 20px 10px;
+        width: 330px;
+    }
+    #lg{
+    
+        position: absolute;
+        top: 20%;
+        left: 14%; 
+        padding: 20px 10px;
+        width: 330px;
+    }
+    main{
+        display: block;
+    }
+
+    #lgsg{
+        width: 500px;
+    }
+
+    #about{
+        width: 500px;
+    }
+    #pStats{
+        padding: 10px 20px;
+        width: 220px;
+        height: 90px;
+        margin: 25px 30px;
+        box-shadow: rgb(107 107 107 / 62%) 5px 13px 12px 0px;
+    
+    }
+    
+    #tStats{
+        border-radius: 10px;
+        font-size: 20px;
+        width: 220px;
+        height: 90px;
+        margin: 25px 20px;
+    }
+}
+
+
+@media only screen and (max-width: 550px){
+    main{
+        margin-top: -130px;
+    }
+    #sg{
+      
+        position: absolute;
+        top: 57%;
+        left: 14%;
+        padding: 10px 5px;
+        width: 290px;
+    }
+    #lg{
+    
+        position: absolute;
+        top: 20%;
+        left: 14%; 
+        padding: 10px 5px;
+        width: 290px;
+    }
+    #lgsg{
+        width: 400px;
+        height: 180px;
+    }
+    #about{
+        width: 400px;
+        margin-left: 35px;
+    }
+    #pStats{
+        padding: 10px 20px;
+        width: 170px;
+        height: 90px;
+        margin: 25px 35px;
+        box-shadow: rgb(107 107 107 / 62%) 5px 13px 12px 0px;
+    
+    }
+    
+    #tStats{
+        border-radius: 10px;
+        font-size: 20px;
+        width: 170px;
+        height: 90px;
+        margin: 25px 25px;
+    }
+    #about>h2{
+        font-size:30px;
+    }
+}
