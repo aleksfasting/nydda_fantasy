@@ -17,11 +17,13 @@ header{
     border: 1px solid black;
     
 }
+
 #line{
     height: 40px;
     width: 0;
     border: 1px solid grey;
 }
+
 main{
     grid-area: m;
     width: 98%;
@@ -102,10 +104,21 @@ table {
  
 }
 
+#table{
+    overflow: scroll;
+    height: 500px;
+    margin-top: 35px;
+}
 th, td {
     border: 1px solid #000000;
     padding: 15px;
     width: 150px;
+}
+
+th{
+    position: sticky;
+    top: 0;
+    background-color: #37003c;
 }
 
 thead > tr {
