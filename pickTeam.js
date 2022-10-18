@@ -12,6 +12,12 @@ url = document.location.href
 username = url.split('?')[1]
 password = url.split('?')[2]
 
+comb = username+password
+if (comb.includes('%')) {
+    window.alert("Username and password can't include æ, ø, å, or spaces")
+    window.location.replace('signup.html')
+}
+
 db = firebase.firestore()
 
 playerListDiv = document.querySelector('#playerlistDiv')
@@ -144,15 +150,15 @@ function lister() {
                     showPicksDiv.appendChild(div1000)
                 }
                 homePageButton = document.createElement('button')
-                /*
+
                 db.collection('teams').add({
                     name: teamName,
                     players: playerArr,
-                    transfersleft: 2,
+                    transfersLeft: 2,
                     usrnm: username,
-                    psswrd: password
-             
-                })   */
+                    psswrd: password,
+                    points: 0,
+                })
                 homePageButton.innerHTML = 'Take me to the user-page'
                 homePageButton.addEventListener('click',confirm)
                 homePageButton.setAttribute("class", "moro")
@@ -195,7 +201,6 @@ function searchPlayer() {
         if (!a[i].innerHTML.toLowerCase().includes(input)) {
             a[i].style.display="none";
         } else {
-            a[i].appendChild(b[i])
             a[i].style.display="list-item";
         }
     }

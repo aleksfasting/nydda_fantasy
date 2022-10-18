@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Register match</h1>
+<input type="text" id="team1input" placeholder="Team 1">
+<input type="text" id="team2input" placeholder="Team 2">
+
+<button id="pickTeam">Pick match</button>
+
+<h2>Match Stats</h2>
+<h2 id="score">0 - 0</h2>
+<h3 id="h31"></h3>
+<ul id="team1ul"></ul>
+
+<h3 id="h32"></h3>
+<ul id="team2ul"></ul>
+
+<button disabled="disabled" id="registerbutton">Register Match</button>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+ 
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+    
+<script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDO2nmJ-Rx4eZh-x8gUmjbAQqFwUfk59wE",
+      authDomain: "nydda-fantasy-dtbase.firebaseapp.com",
+      projectId: "nydda-fantasy-dtbase",
+      storageBucket: "nydda-fantasy-dtbase.appspot.com",
+      messagingSenderId: "516798929727",
+      appId: "1:516798929727:web:56e0af73e1f010e573918a",
+      measurementId: "G-SPWWSD3QPW"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+<script src="registerMatch.js"></script>
+</body>
+</html>

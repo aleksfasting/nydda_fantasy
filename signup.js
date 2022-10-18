@@ -10,6 +10,10 @@ function signup() {
     if (psswrd1El.value==psswrd2El.value) {
         u = usrnmEl.value
         p = psswrd1El.value
+
+        if (u.includes('æ','ø','å',' ', '%') || p.includes('æ','ø','å',' ', '%')) {
+          window.alert("Username and password can't contain spaces, æ, ø or å")
+        } else {
         db.collection("teams").get().then((snapshot) => {
             let documents = snapshot.docs;
             uexists = false
@@ -35,6 +39,7 @@ function signup() {
                 document.location.replace('pickTeam.html?' + u + '?' + p)
             }
         })
+        }
     }
     else{
       window.alert("The passwords aren`t the same");
