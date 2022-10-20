@@ -1,0 +1,427 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 750px;
+    background-color: rgb(179, 175, 175);
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+*{
+    font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, sans-serif';
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: h;
+    background-color: #37003c;  
+    height: 75px;
+    border: 1px solid black;
+        
+}
+
+main{
+    grid-area: m;
+    width: 98%;
+    height: 620px;
+    background-color: rgba(255, 255, 255, 0.781);
+    margin: auto;
+    display: flex;
+    margin-top: 20px;
+  
+}
+
+#boks{
+    display: flex;
+    width: auto;
+    margin: auto;
+    height: 580px;
+}
+
+
+img{
+    width: 80px;
+    height: 65px;
+    position: absolute;
+    left: 1%;
+    top: 1%;
+}
+
+.nav_links{
+    list-style: none;
+    padding: 0px 20px;
+    display: flex;
+  
+
+}
+
+.nav_links li{
+    display: inline-block;
+    margin: 10px;
+
+}
+
+
+.nav_links li a{
+    transition: all 0.3s ease 0s;
+    text-align: center;
+    color:rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+
+}
+
+.nav_links li a:hover:not(#nrfr){
+    transition: all 0.3s ease 0s;
+    color:rgb(0, 0, 0);
+    background-color: #09fd8b;
+    padding: 5px 20px; 
+    border-radius: 8px;
+    text-decoration: underline;
+}
+
+.nydalen{
+    position: absolute;
+    left: 9%;
+}
+
+table {
+    border-collapse: collapse;
+    border-bottom: 2px solid #3f4259;
+    border: 1px solid black;
+    margin-left: 3%;
+    table-layout: fixed;
+}
+
+#table{
+    height: 490px;
+    overflow-y: scroll;
+    overflow-x: auto;
+    max-width: 100%;
+    margin-top: 20px;
+
+}
+th, td {
+    border: 1px solid #000000;
+    padding: 15px 15px;
+}
+
+th{
+    position: sticky;
+    top: 0;
+    background-color:#37003c;
+    color: #f6f7fa;
+    border: 1px solid black;
+}
+
+
+
+tbody > tr{
+    background-color: rgba(61, 25, 91, 0.377);
+} 
+
+
+button{
+    margin: 21px;
+    background-color: transparent;
+    text-align: center;
+    border-radius: 6px;
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 5px 130px;
+    border: 1px solid;
+    display: flex;
+    box-shadow: rgb(107 107 107 / 32%) 0px 8px 12px 0px;
+
+}
+
+button:hover{
+    transition: all 0.3s ease 0s;
+    color:rgb(0, 0, 0);
+    background-color: rgba(61, 25, 91, 0.596);
+    padding: 5px 125px; 
+    border-radius: 8px;
+    text-decoration: underline;
+}
+
+
+h2{
+    font-size: 30px;
+    margin-top: 40%;
+}
+
+h1{
+    margin-top: 3%;
+    text-align: center;
+}
+
+#sorteringer{
+    margin-top: -30px;
+    margin-left: 40px;
+}
+
+#around{
+    margin-top: -80px;
+}
+
+
+#line{
+    height: 40px;
+    width: 0;
+    border: 1px solid grey;
+}
+
+#TotPTS{
+    padding: 5px 133px;
+}
+
+#keeperbutton{
+    padding: 5px 133px;
+
+}
+#outfieldbutton{
+    padding: 5px 127px;
+
+}
+
+@media only screen and (max-width: 1330px ){
+    body{
+        height: 1150px;
+    }
+    main{
+        display: block;
+        height: 1090px;
+        position: relative;
+    }
+
+#sorteringer{
+        position: absolute;
+        top: 35%;
+    }
+    #around{
+        position: absolute;
+        top: 60%;
+    }
+    #bbl{   
+        display: flex;
+    }
+    #lbb{
+        display: flex;
+    }
+
+ 
+}
+@media only screen and (max-width: 915px){
+  
+    th, td {
+        border: 1px solid #000000;
+        padding: 10px 10px;
+    }
+   
+}
+@media only screen and (max-width: 830px){
+
+    th, td {
+        border: 1px solid #000000;
+        padding: 5px 5px;
+        
+    }
+    
+#sorteringer{
+    position: absolute;
+    top: 35%;
+}
+#around{
+    position: absolute;
+    top: 70%;
+}
+
+#TotPTS{
+    padding: 5px 123px;
+}
+
+#keeperbutton{
+    padding: 5px 123px;
+
+}
+#outfieldbutton{
+    padding: 5px 117px;
+
+}
+
+
+#table{
+   
+    margin-top: 20px;
+    margin-left: none;
+}
+table{
+ 
+    margin-left: none;
+
+}
+
+}
+
+@media only screen and (max-width: 800px){
+    .nydalen{
+        position: absolute;
+        left: 11%;
+    }
+
+    h2{
+        font-size: 30px;
+        margin-top: 10%;
+    }
+    #bbl{
+        display: flex;
+    }
+    .nydalen{
+        display: none !important;
+     }
+     button{
+         padding: 10px 90px;
+ 
+     }
+     #sorteringer{
+        position: absolute;
+        top: 55%;
+    }
+    #around{
+        position: absolute;
+        top: 140%;
+    }
+    #TotPTS{
+        padding: 5px 73px;
+    }
+    
+    #GWPTS{
+        padding: 5px 73px;
+
+    }
+    #keeperbutton{
+        padding: 7px 73px;
+    
+    }
+    #outfieldbutton{
+        padding: 5px 63px;
+    
+    }
+
+    
+}
+
+@media only screen and (max-width: 750px){
+    body{
+        overflow-x: hidden;
+    }
+  
+
+    #table{
+        width: 90%;
+        margin-left: 5%;
+    }
+
+}
+
+@media only screen and (max-width: 700px){
+  
+    #table{
+        width: 85%;
+        margin-left: 2%;
+    }
+
+
+}
+
+@media only screen and (max-width: 650px){
+    #table{
+        width: 75%;
+        margin-left: 2%;
+    }
+
+    h1{
+        margin-left: -15%;
+    }
+}
+@media only screen and (max-width: 600px){
+    
+
+    .nav_links li{
+        
+        margin: 10px;
+    
+    }
+
+    #nrfr{
+        display: none;
+     }
+ 
+     
+    button{
+        padding: 20px 60px;
+
+    }
+    #keeperbutton{
+        padding: 12px 63px;
+    
+    }
+    #outfieldbutton{
+        padding: 10px 53px;
+    
+    }
+
+    #TotPTS{
+        padding: 10px 63px;
+    }
+    
+    #GWPTS{
+        padding: 10px 63px;
+
+    }
+
+    .nav_links li a:hover:not(#nrfr){
+        transition: all 0.3s ease 0s;
+        color:rgb(0, 0, 0);
+        background-color: #09fd8b;
+        text-decoration-color: rgb(134, 91, 10);
+        padding: 3px 10px; 
+        border-radius: 8px;
+        text-decoration: underline;
+    }
+}
+
+
+@media only screen and (max-width: 570px){
+
+    #table{
+        width: 63%;
+        margin-left: 2%;
+    }
+    h1{
+        margin-left: -28%;
+    }
+    #TotPTS{
+        padding: 5px 63px;
+    }
+    
+    #GWPTS{
+        padding: 5px 63px;
+
+    }
+}
+
+@media only screen and (max-width: 300px){
+    .nydalen{
+       display: none !important;
+    }
+    .nav_links li{
+        margin: 1px;
+    
+    }
+
+}
+
