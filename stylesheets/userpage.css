@@ -118,12 +118,19 @@ img{
 }
 #UID{
     position: absolute;
-    top: 0;
+    top: -1%;
     right: 2%;
-    width: 270px;
+    width: 300px;
     color: white;
     text-align: center;
     font-size: 19px;
+}
+#userID{
+    font-size: 38px;
+}
+#Gw{
+    font-size: 45px;
+    margin-top: 10px;
 }
 
 
@@ -206,7 +213,7 @@ img{
 }
 
 #lol{
-    margin-top: 20px;
+    margin-top: 40px;
 
 }
 #transdiv{
@@ -276,7 +283,7 @@ tbody > tr{
 
 th, td{
     border: 1px solid #000000;
-    padding: 15px 35px;
+    padding: 20px 40px;
   
 }
 
@@ -398,6 +405,18 @@ main{
   
 }
 
+@media only screen and (max-width:1050px){
+
+  #Gw{
+    font-size: 30px;
+}
+#userID{
+    font-size: 30px;
+}
+    
+
+}
+
 @media only screen and (max-width: 1000px){
     body{
         overflow-x: hidden;
@@ -483,6 +502,13 @@ main{
         position: absolute;
         top: 0;
         right: 0;
+    }
+
+    #Gw{
+        font-size: 20px;
+    }
+    #userID{
+        font-size: 20px;
     }
 
 }

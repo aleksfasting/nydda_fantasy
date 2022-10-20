@@ -35,7 +35,7 @@ function signup() {
                     usrnm: u,
                     psswrd: p,
                 })
-                window.alert('Created User: ' + u)
+                window.alert('To create User you must also pick 5 players. Click OK')
                 document.location.replace('pickTeam.html?' + u + '?' + p)
             }
         })

@@ -15,34 +15,30 @@ url = document.location.href // hente bruker-ID fra url
 expvar = url.split('?')[1]
 userID = expvar.split('=')[1]; // lagre brukeren-ID is userID
 
-document.querySelector('#userID').innerHTML += userID // vise bruker-ID i h3
-
-
-var countDownDate = new Date("Oct 21, 2022 11:40:00").getTime();
+countDownDate = new Date("Oct 21, 2022 11:40:00").getTime();
 
 // Update the count down every 1 second
-var x = setInterval(function() {
+x = setInterval(function() {
 
   // Get today's date and time
-  var now = new Date().getTime();
+  now = new Date().getTime();
 
   // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+  distance = countDownDate - now;
 
   // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  seconds = Math.floor((distance % (1000 * 60)) / (1000))
 
   // Display the result in the element with id="demo"
-  document.querySelector(".other0").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
+  document.querySelector("#userID").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + 's';
 
   // If the count down is finished, write some text
   if (distance < 0) {
     clearInterval(x);
-    document.querySelector(".other0").innerHTML = "EXPIRED";
+    document.querySelector("#userID").innerHTML = "DEADLINE";
   }
 }, 1000);
 
@@ -55,7 +51,7 @@ function showTeamNames(doc) { // funksjon for å vise spillernavn
 
 function collectTeamStats(doc,playerName,transfersLeft) { // funksjon for å vise spillerstatisikk
     db.collection('players').get().then((snapshot) => { // firebase for å hente stats til spillere i lag 
-        let documents2 = snapshot.docs;
+        documents2 = snapshot.docs;
         for (k=0;k<documents2.length;k++) {
             if (playerName == documents2[k].data().name) {
                 showTeamStats(documents2[k].data(),playerName,transfersLeft)
@@ -67,97 +63,38 @@ function collectTeamStats(doc,playerName,transfersLeft) { // funksjon for å vis
 function showTeamStats(doc1, playerName,transfersLeft) {
     if (doc1.goalsInRound != undefined) {
         let rounds = doc1.goalsInRound.length // antall runder kamper spilt
-        tbodyEl = document.querySelector('#team') // henter tbody
-        trEl = document.createElement('tr') //lager rad
-
-        tdEl = document.createElement('td') // spiller navn
-        tdEl.innerHTML = playerName
-        trEl.appendChild(tdEl)
-
-        tdEl = document.createElement('td') // spiller poeng i runden
-        gwtot = calcPointsRound(rounds-1, doc1.goalsInRound, doc1.assistsInRound, doc1.MOTM, doc1.CSInRound)
-        tdEl.innerHTML = gwtot
-        trEl.appendChild(tdEl)
-
-        tdEl = document.createElement('td') // poeng totalt
-        tot = calcPoints(rounds, doc1.goalsInRound, doc1.assistsInRound, doc1.MOTM, doc1.CSInRound)
-        tdEl.innerHTML = tot
-        trEl.appendChild(tdEl)
-
-        tdEl = document.createElement('td') // spiller lag
-        tdEl.innerHTML = doc1.team
-        trEl.appendChild(tdEl)
-
-        tdEl = document.createElement('td') //  posisjon
-        tdEl.innerHTML = posFunc(doc1.keeper)
-        trEl.appendChild(tdEl)
-
-        buttonEl = document.createElement('button') // transfer knapp
-        buttonEl.innerHTML = 'Transfer'
-        buttonEl.addEventListener('click', transferPlayer)
-        buttonEl.param = playerName
-        buttonEl.transfersLeft = transfersLeft
-        buttonEl.setAttribute('class', 'transferOutButton')
-        trEl.appendChild(buttonEl)
-
-        tbodyEl.appendChild(trEl) // legge til rad
-
-        if (document.querySelector('#performance').innerText.length < 1) { // lager perfomance tabellen med itrasjon
-            trEl = document.querySelector('#performance')
-
-            tdEl = document.createElement('td') // legger inn poeng denne runden fra data i første rad i tabellen under
-            tdEl.innerHTML = gwtot
-            trEl.appendChild(tdEl)
-
-            tdEl = document.createElement('td') // legger inn totale poeng fra data i første rad i tabellen under
-            tdEl.innerHTML = tot
-            trEl.appendChild(tdEl)
-        } else {
-            numlist = document.querySelector('#performance').innerHTML.split('</td><td>') // henter data fra forrige iterasjon av tabellen
-            for (i=0; i<2;i++) {
-                numlist[i] = numlist[i].replace('<td>','')
-                numlist[i] = numlist[i].replace('</td>','')
-                numlist[i] = Number(numlist[i])
-            }
-            numlist[0] += gwtot
-            numlist[1] += tot
-            trEl = document.querySelector('#performance')
-            trEl.innerHTML = '<td>' + numlist[0] + '</td><td>' + numlist[1] + '</td>' // legger til ny iterasjon i tabellen
-        }
     } else {
-        tbodyEl = document.querySelector('#team') // henter tbody
-        trEl = document.createElement('tr') //lager rad
-
-        tdEl = document.createElement('td')
-        tdEl.innerHTML = doc1.name
-        trEl.appendChild(tdEl)
-
-        tdEl = document.createElement('td')
-        tdEl.innerHTML = 0
-        trEl.appendChild(tdEl)
-
-        tdEl = document.createElement('td')
-        tdEl.innerHTML = 0
-        trEl.appendChild(tdEl)
-
-        tdEl = document.createElement('td')
-        tdEl.innerHTML = doc1.team
-        trEl.appendChild(tdEl)
-        
-        tdEl = document.createElement('td')
-        tdEl.innerHTML = posFunc(doc1.keeper)
-        trEl.appendChild(tdEl)
-
-        buttonEl = document.createElement('button') // transfer knapp
-        buttonEl.innerHTML = 'Transfer'
-        buttonEl.addEventListener('click', transferPlayer)
-        buttonEl.param = doc1.name
-        buttonEl.transfersLeft = transfersLeft
-        buttonEl.setAttribute('class', 'transferOutButton')
-        trEl.appendChild(buttonEl)
-
-        tbodyEl.appendChild(trEl)
+        rounds = 0
     }
+    tbodyEl = document.querySelector('#team') // henter tbody
+    trEl = document.createElement('tr') //lager rad
+
+    tdEl = document.createElement('td') // spiller navn
+    tdEl.innerHTML = playerName
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td') // poeng totalt
+    tot = calcPoints(rounds, doc1.goalsInRound, doc1.assistsInRound, doc1.MOTM, doc1.CSInRound)
+    tdEl.innerHTML = tot
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td') // spiller lag
+    tdEl.innerHTML = doc1.team
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td') //  posisjon
+    tdEl.innerHTML = posFunc(doc1.keeper)
+    trEl.appendChild(tdEl)
+
+    buttonEl = document.createElement('button') // transfer knapp
+    buttonEl.innerHTML = 'Transfer'
+    buttonEl.addEventListener('click', transferPlayer)
+    buttonEl.param = playerName
+    buttonEl.transfersLeft = transfersLeft
+    buttonEl.setAttribute('class', 'transferOutButton')
+    trEl.appendChild(buttonEl)
+
+    tbodyEl.appendChild(trEl) // legge til rad
 }
 
 function transferPlayer(evt) {
@@ -186,7 +123,7 @@ function transferPlayer(evt) {
 
     ulEl = document.createElement('ul') // lager liste for spillere som skal byttes inn
     db.collection('players').get().then((snapshot) => { // henter spillere
-        let documents2 = snapshot.docs;
+        documents2 = snapshot.docs;
         playerTeamDict = {}
         playerPosDict = {}
         for (m = 0; m < documents2.length; m++) {
@@ -330,8 +267,9 @@ db.collection('teams').onSnapshot((snapshot) => {
 
         for (j = 0; j < documents1.length;j++) {
             if (documents1[j].id == userID) {
-                playersArr = documents1[j].data().players
-                playersArrSave = documents1[j].data().players
+                playersArr = documents1[j].data().playersLastGW
+                playersArrSave = documents1[j].data().playersLastGW
+                points = documents1[j].data().points
                 showTeamNames(documents1[j].data())
             }
         }

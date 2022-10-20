@@ -195,6 +195,12 @@ db.collection("players").get().then((snapshot) => {
     sortTOTEl = document.querySelector('#TotPTS')
     sortTOTEl.ptstot = ptsTOT
     sortTOTEl.addEventListener('click', sortTOT)
+
+    filterKeepEl = document.querySelector('#keeperbutton')
+    filterKeepEl.addEventListener('click', filterKeepers)
+
+    filterOutEl = document.querySelector('#outfieldbutton')
+    filterOutEl.addEventListener('click', filterOutfield)
 });
 
 function sortDict(dict) {
@@ -232,6 +238,7 @@ function filterKeepers() {
 
 function filterOutfield() {
     a = document.getElementsByClassName('listItem')
+    console.log('hello')
     for (i=0;i<a.length;i++) {
         if (a[i].pos == 'Keeper') {
             a[i].style.display = 'none'
