@@ -4,7 +4,11 @@ function showTeamEl(doc) {
     let tbodyEl = document.querySelector('tbody')
     let trEl = document.createElement('tr')
 
-    let tdEl = document.createElement('td')
+    tdEl = document.createElement('td')
+    tdEl.innerHTML = '-'
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td')
     tdEl.innerHTML = doc.data().name
     nameDict[doc.data().usrnm] = doc.data().name
     trEl.appendChild(tdEl)
@@ -81,6 +85,10 @@ function sortGW(evt) {
         trEl = document.createElement('tr')
 
         tdEl = document.createElement('td')
+        tdEl.innerHTML = i + 1
+        trEl.appendChild(tdEl)
+
+        tdEl = document.createElement('td')
         tdEl.innerHTML = nameDict[sortedArr[i]]
         trEl.appendChild(tdEl)
 
@@ -112,6 +120,10 @@ function sortTot(evt) {
     for (i=0; i<sortedArr.length; i++) {
         tbodyEl = document.querySelector('tbody')
         trEl = document.createElement('tr')
+
+        tdEl = document.createElement('td')
+        tdEl.innerHTML = i + 1
+        trEl.appendChild(tdEl)
 
         tdEl = document.createElement('td')
         tdEl.innerHTML = nameDict[sortedArr[i]]
