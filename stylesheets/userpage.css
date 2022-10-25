@@ -133,6 +133,11 @@ img{
     margin-top: 10px;
 }
 
+#resetth{
+    background-color: white;
+    border: white;
+}
+
 
 .transInButtons{
     background-image: linear-gradient(to right, rgb(0, 255, 135), rgb(2, 239, 255));

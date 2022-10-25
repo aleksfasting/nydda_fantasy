@@ -17,6 +17,14 @@ userID = expvar.split('=')[1]; // lagre brukeren-ID is userID
 
 countDownDate = new Date("Nov 4, 2022 11:00:00").getTime();
 
+resetButton = document.querySelector('#resetbutton')
+resetButton.innerHTML = 'Reset'
+resetButton.addEventListener('click',refresh)
+
+function refresh() {document.location = url}
+
+
+
 // Update the count down every 1 second
 x = setInterval(function() {
 
@@ -140,6 +148,7 @@ function transferPlayer(evt) {
     for (button of y) {
         button.disabled = true
     }
+    resetButton.disabled = false
 
     transDivEl = document.querySelector('#transdiv') // henter divboksen for transfers med id-en transdiv
     h3El = document.createElement('h3')
@@ -225,6 +234,9 @@ function registerTrans(evt) {
     keeperCount = 0
     sameTeam = false
     alertCount = 0
+    
+    resetButton = document.querySelector('#resetbutton')
+    resetButton.disabled  = true
     for (i = 0; i < playersArr.length; i++) {
         for (j = 0; j < playersArr.length; j++) {
             player1 = playersArr[i]
@@ -303,8 +315,8 @@ db.collection('teams').doc(userID).onSnapshot((snapshot) => {
 
         for (j = 0; j < documents1.length;j++) {
             if (documents1[j].id == userID) {
-                playersArr = documents1[j].data().playersThisGW
-                playersArrSave = documents1[j].data().playersThisGW
+                playersArr = documents1[j].data().players
+                playersArrSave = documents1[j].data().players
                 points = documents1[j].data().points
                 showTeamNames(documents1[j].data())
             }
