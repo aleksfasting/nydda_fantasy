@@ -14,13 +14,13 @@ function showPlayerEl(doc) { // Funksjon for å vise spillerne i tabell
         let rounds = doc.data().goalsInRound.length
 
         tdEl = document.createElement('td') // for poeng i siste kampen
-        ptsGWEl = calcPointsRound(rounds-1,doc.data().goalsInRound,doc.data().assistsInRound,doc.data().MOTM,doc.data().CSInRound)
+        ptsGWEl = calcPointsRound(rounds-1,doc.data().goalsInRound,doc.data().assistsInRound,doc.data().MOTM,doc.data().CSInRound, doc.data().keeper)
         tdEl.innerHTML = ptsGWEl
         ptsGW[doc.id] = ptsGWEl
         trEl.appendChild(tdEl)
 
         tdEl = document.createElement('td') // for poeng totalt
-        ptsTOTEl = calcPoints(rounds, doc.data().goalsInRound, doc.data().assistsInRound, doc.data().MOTM, doc.data().CSInRound)
+        ptsTOTEl = calcPoints(rounds, doc.data().goalsInRound, doc.data().assistsInRound, doc.data().MOTM, doc.data().CSInRound, doc.data().keeper)
         tdEl.innerHTML = ptsTOTEl
         ptsTOT[doc.id] = ptsTOTEl
         trEl.appendChild(tdEl)
@@ -55,8 +55,12 @@ function showPlayerEl(doc) { // Funksjon for å vise spillerne i tabell
     tdEl = document.createElement('td') // lagnavn
     tdEl.innerHTML = doc.data().team
     trEl.appendChild(tdEl)
+    trEl.team = doc.data().team
 
     tbodyEl.appendChild(trEl) // legge alt til i rad
+
+    inputEl = document.querySelector('#laginput')
+    inputEl.setAttribute('onkeyup', 'teamFilter()')
 }
 
 function sortGW(evt) {
@@ -78,13 +82,13 @@ function sortGW(evt) {
             trEl.appendChild(tdEl)
 
             tdEl = document.createElement('td') // for poeng i siste kampen
-            ptsGWEl = calcPointsRound(rounds-1,doc.data().goalsInRound,doc.data().assistsInRound,doc.data().MOTM,doc.data().CSInRound)
+            ptsGWEl = calcPointsRound(rounds-1,doc.data().goalsInRound,doc.data().assistsInRound,doc.data().MOTM,doc.data().CSInRound, doc.data().keeper)
             tdEl.innerHTML = ptsGWEl
             ptsGW[doc.id] = ptsGWEl
             trEl.appendChild(tdEl)
 
             tdEl = document.createElement('td') // for poeng totalt
-            ptsTOTEl = calcPoints(rounds, doc.data().goalsInRound, doc.data().assistsInRound, doc.data().MOTM, doc.data().CSInRound)
+            ptsTOTEl = calcPoints(rounds, doc.data().goalsInRound, doc.data().assistsInRound, doc.data().MOTM, doc.data().CSInRound, doc.data().keeper)
             tdEl.innerHTML = ptsTOTEl
             ptsTOT[doc.id] = ptsTOTEl
             trEl.appendChild(tdEl)
@@ -113,8 +117,9 @@ function sortGW(evt) {
             tdEl.innerHTML = doc.data().team
             trEl.appendChild(tdEl)
 
-            tbodyEl.appendChild(trEl)
+            trEl.team = doc.data().team
 
+            tbodyEl.appendChild(trEl)
         })
     }
 }
@@ -138,13 +143,13 @@ function sortTOT(evt) {
             trEl.appendChild(tdEl)
 
             tdEl = document.createElement('td') // for poeng i siste kampen
-            ptsGWEl = calcPointsRound(rounds-1,doc.data().goalsInRound,doc.data().assistsInRound,doc.data().MOTM,doc.data().CSInRound)
+            ptsGWEl = calcPointsRound(rounds-1,doc.data().goalsInRound,doc.data().assistsInRound,doc.data().MOTM,doc.data().CSInRound, doc.data().keeper)
             tdEl.innerHTML = ptsGWEl
             ptsGW[doc.id] = ptsGWEl
             trEl.appendChild(tdEl)
 
             tdEl = document.createElement('td') // for poeng totalt
-            ptsTOTEl = calcPoints(rounds, doc.data().goalsInRound, doc.data().assistsInRound, doc.data().MOTM, doc.data().CSInRound)
+            ptsTOTEl = calcPoints(rounds, doc.data().goalsInRound, doc.data().assistsInRound, doc.data().MOTM, doc.data().CSInRound, doc.data().keeper)
             tdEl.innerHTML = ptsTOTEl
             ptsTOT[doc.id] = ptsTOTEl
             trEl.appendChild(tdEl)
@@ -173,8 +178,9 @@ function sortTOT(evt) {
             tdEl.innerHTML = doc.data().team
             trEl.appendChild(tdEl)
 
-            tbodyEl.appendChild(trEl)
+            trEl.team = doc.data().team
 
+            tbodyEl.appendChild(trEl)
         })
     }
 }
@@ -244,6 +250,18 @@ function filterOutfield() {
             a[i].style.display = 'none'
         } else {
             a[i].style.display = 'table-row'
+        }
+    }
+}
+
+function teamFilter() {
+    x = document.querySelectorAll('.listItem')
+    teamInput = document.querySelector('#laginput').value
+    for (teamButton of x) {
+        if (teamButton.team.toLowerCase().includes(teamInput.toLowerCase())) {
+            teamButton.style.display = 'table-row'
+        } else {
+            teamButton.style.display = 'none'
         }
     }
 }

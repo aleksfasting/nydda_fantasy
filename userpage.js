@@ -15,7 +15,7 @@ url = document.location.href // hente bruker-ID fra url
 expvar = url.split('?')[1]
 userID = expvar.split('=')[1]; // lagre brukeren-ID is userID
 
-countDownDate = new Date("Oct 21, 2022 11:40:00").getTime();
+countDownDate = new Date("Nov 4, 2022 11:00:00").getTime();
 
 // Update the count down every 1 second
 x = setInterval(function() {
@@ -47,14 +47,51 @@ function showTeamNames(doc) { // funksjon for å vise spillernavn
     for (i=0; i<doc.players.length;i++) { // hente alle spillerene i spiller-arrayen
         collectTeamStats(doc,doc.players[i],doc.transfersLeft) // legge til spillerstatistikk
     }
+
+    gwpts = 0
+    tallet = 0
+    for (i=0; i<doc.players.length;i++) {
+        performanceStats(doc,doc.playersThisGW[i])
+    }
+    
+    trEl2 = document.querySelector('#performance')
+
+    tdEl = document.createElement('td')
+    tdEl.innerHTML = doc.points
+    trEl2.appendChild(tdEl)
+}
+
+function performanceStats(doc,playerGW) {
+    db.collection('players').get().then((snapshot) => {
+        dok = snapshot.docs
+        for (p=0;p<dok.length;p++) {
+            if (dok[p].data().name == playerGW) {
+                dok = dok[p].data()
+                if (dok.goalsInRound != undefined) {
+                    rounds = dok.goalsInRound.length // antall runder kamper spilt
+                } else {
+                    rounds = 0
+                }
+                
+                gwpts += calcPointsRound(rounds-1, dok.goalsInRound, dok.assistsInRound, dok.MOTM, dok.CSInRound, dok.keeper)
+                tallet++
+                if (tallet == 5) {
+                    trEl2.querySelector('#performance')
+                    tdEl = document.createElement('td')
+                    tdEl.innerHTML = gwpts
+                    trEl2.appendChild(tdEl)
+                }
+            }
+        }
+    })
 }
 
 function collectTeamStats(doc,playerName,transfersLeft) { // funksjon for å vise spillerstatisikk
     db.collection('players').get().then((snapshot) => { // firebase for å hente stats til spillere i lag 
-        documents2 = snapshot.docs;
-        for (k=0;k<documents2.length;k++) {
-            if (playerName == documents2[k].data().name) {
-                showTeamStats(documents2[k].data(),playerName,transfersLeft)
+        doc2 = snapshot.docs;
+        for (k=0;k<doc2.length;k++) {
+            if (playerName == doc2[k].data().name) {
+                showTeamStats(doc2[k].data(),playerName,transfersLeft)
             }
         }
     })
@@ -62,10 +99,11 @@ function collectTeamStats(doc,playerName,transfersLeft) { // funksjon for å vis
 
 function showTeamStats(doc1, playerName,transfersLeft) {
     if (doc1.goalsInRound != undefined) {
-        let rounds = doc1.goalsInRound.length // antall runder kamper spilt
+        rounds = doc1.goalsInRound.length // antall runder kamper spilt
     } else {
         rounds = 0
     }
+
     tbodyEl = document.querySelector('#team') // henter tbody
     trEl = document.createElement('tr') //lager rad
 
@@ -74,7 +112,7 @@ function showTeamStats(doc1, playerName,transfersLeft) {
     trEl.appendChild(tdEl)
 
     tdEl = document.createElement('td') // poeng totalt
-    tot = calcPoints(rounds, doc1.goalsInRound, doc1.assistsInRound, doc1.MOTM, doc1.CSInRound)
+    tot = calcPoints(rounds, doc1.goalsInRound, doc1.assistsInRound, doc1.MOTM, doc1.CSInRound, doc1.keeper)
     tdEl.innerHTML = tot
     trEl.appendChild(tdEl)
 
@@ -249,9 +287,7 @@ function searchPlayer() {
 
 db = firebase.firestore();
 
-db.collection('teams').doc(userID).update({transfersLeft: 10})
-
-db.collection('teams').onSnapshot((snapshot) => {
+db.collection('teams').doc(userID).onSnapshot((snapshot) => {
     db.collection("teams").get().then((snapshot) => { // firebase for å hente spillere i lag
         let documents1 = snapshot.docs
 
@@ -267,8 +303,8 @@ db.collection('teams').onSnapshot((snapshot) => {
 
         for (j = 0; j < documents1.length;j++) {
             if (documents1[j].id == userID) {
-                playersArr = documents1[j].data().playersLastGW
-                playersArrSave = documents1[j].data().playersLastGW
+                playersArr = documents1[j].data().playersThisGW
+                playersArrSave = documents1[j].data().playersThisGW
                 points = documents1[j].data().points
                 showTeamNames(documents1[j].data())
             }
