@@ -168,3 +168,8 @@ function sortDict(dict) {
     }
     return keysArr
 }
+url = document.location.href 
+let rBtn = document.querySelector("#rbtn");
+rBtn.addEventListener("click", refresh);
+
+function refresh() {document.location = url}

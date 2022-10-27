@@ -319,6 +319,8 @@ db.collection('teams').doc(userID).onSnapshot((snapshot) => {
                 playersArrSave = documents1[j].data().players
                 points = documents1[j].data().points
                 showTeamNames(documents1[j].data())
+
+                document.querySelector('#translefth2').innerHTML += documents1[j].data().transfersLeft
             }
         }
     });

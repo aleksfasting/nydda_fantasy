@@ -14,11 +14,11 @@
               <li class = "nydalen" ><a href="https://nydalen.vgs.no/"> Nydalen </a></li>
         
          <div id = "other">
-              <li><a class = "other1" href="login.html" target= "_blank">Login</a></li> 
+              <li><a  href="login.html" target= "_blank">Login</a></li> 
      
-              <li><a class = "other2" href="playerstats.html">Player Stats</a></li>
-
-              <li><a class = "other" href="index.html">Home</a></li>           
+              <li><a href="playerstats.html">Player Stats</a></li>
+              <li><a id = "here" href="teamstats.html">Team Stats</a></li>
+              <li><a href="index.html">Home</a></li>           
          </div>
          <div id = "line"></div>
 
@@ -27,6 +27,8 @@
  
 </header>
 <main>
+  <button id = "rbtn"><p>Refresh table</p></button>
+
   <div id = "boks">
     <div id = idk>
       <h1>Team Stats</h1>
@@ -35,6 +37,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Pos</th>    
                     <th>Team</th>    
                     <th>Username</th>
                     <th>Last GW</th>
@@ -47,6 +50,7 @@
         </table>
     </div>
   </div>
+
   <div id = "sorteringer">
     <h2>Sorter etter: </h2>
     <div id = "bbl">
@@ -54,6 +58,7 @@
 
      <button id = "GWPTS"><p>GW PTS</p></button>
 
+    
     </div>
       
   </div>
