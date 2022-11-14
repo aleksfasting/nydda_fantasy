@@ -15,7 +15,7 @@ url = document.location.href // hente bruker-ID fra url
 expvar = url.split('?')[1]
 userID = expvar.split('=')[1]; // lagre brukeren-ID is userID
 
-countDownDate = new Date("Nov 4, 2022 11:00:00").getTime();
+countDownDate = new Date("Nov 18, 2022 11:00:00").getTime();
 
 resetButton = document.querySelector('#resetbutton')
 resetButton.innerHTML = 'Reset'
@@ -142,6 +142,37 @@ function showTeamStats(doc1, playerName,transfersLeft) {
 
     tbodyEl.appendChild(trEl) // legge til rad
 }
+
+
+function showTeamStats2(doc1,playerName) {
+    if (doc1.goalsInRound != undefined) {
+        rounds = doc1.goalsInRound.length // antall runder kamper spilt
+    } else {
+        rounds = 0
+    }
+    tbodyEl = document.querySelector('#team2') // henter tbody
+    trEl = document.createElement('tr') //lager rad
+
+    tdEl = document.createElement('td') // spiller navn
+    tdEl.innerHTML = playerName
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td') // poeng totalt
+    tot = calcPointsRound(rounds - 1, doc1.goalsInRound, doc1.assistsInRound, doc1.MOTM, doc1.CSInRound, doc1.keeper)
+    tdEl.innerHTML = tot
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td') // spiller lag
+    tdEl.innerHTML = doc1.team
+    trEl.appendChild(tdEl)
+
+    tdEl = document.createElement('td') //  posisjon
+    tdEl.innerHTML = posFunc(doc1.keeper)
+    trEl.appendChild(tdEl)
+
+    tbodyEl.appendChild(trEl) // legge til rad
+}
+
 
 function transferPlayer(evt) {
     y = document.getElementsByClassName('transferOutButton')
@@ -324,4 +355,18 @@ db.collection('teams').doc(userID).onSnapshot((snapshot) => {
             }
         }
     });
+})
+
+db.collection('teams').doc(userID).get().then((snapshot) => {
+    doc = [snapshot]
+    db.collection('players').get().then((snapshot) => {
+        doc1 = snapshot.docs
+        for (player of doc[0].data().playersThisGW) {
+            for (i = 0; i < doc1.length; i ++) {
+                if (doc1[i].data().name == player) {
+                    showTeamStats2(doc1[i].data(), player)
+                }
+            }
+        }
+    })
 })
